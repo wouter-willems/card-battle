@@ -1,8 +1,16 @@
 <div class="componentContainer">
-    <div class="name">{{cardData.name}}</div>
+    <div class="type" *ngIf="showType()">{{cardData.type}}</div>
+    <div class="attributes" *ngIf="showAttributes()">{{cardData.attributes}}</div>
+    <div class="name" [ngClass]="{isSpell: cardData.type === 'spell'}">{{cardData.name}}</div>
     <div class="costToBuy">{{cardData.costToBuy}}</div>
-    <div class="costToPlay">{{cardData.costToPlay ?? 0}}</div>
-    <div class="description">{{cardData.description}}</div>
+    <div class="costToPlay" *ngIf="cardData.type !== 'mana'">{{cardData.costToPlay ?? 0}}</div>
+    <div class="mana" *ngIf="cardData.type === 'mana'">{{cardData.mana}}</div>
+    <div class="description">
+        <div [ngClass]="{underline: cardData.description2}">{{cardData.description}}</div>
+        <div *ngIf="cardData.description2" class="description2">
+            {{cardData.description2}}
+        </div>
+    </div>
     <img class="art" [src]="cardData.artSrc" />
     <div class="textOverlay"></div>
 

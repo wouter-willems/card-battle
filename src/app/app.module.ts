@@ -10,6 +10,8 @@ import { DrawPileComponent } from './draw-pile/draw-pile.component';
 import { DiscardPileComponent } from './discard-pile/discard-pile.component';
 import { ShopComponent } from './shop/shop.component';
 import { HpCounterComponent } from './hp-counter/hp-counter.component';
+import {ShopSecretComponent} from "./shop-secret/shop-secret.component";
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
     declarations: [
@@ -19,12 +21,14 @@ import { HpCounterComponent } from './hp-counter/hp-counter.component';
         DrawPileComponent,
         DiscardPileComponent,
         ShopComponent,
-        HpCounterComponent
+        HpCounterComponent,
+        ShopSecretComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         DragDropModule,
+        MatDialogModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

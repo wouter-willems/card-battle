@@ -1,6 +1,6 @@
 <div class="componentContainer">
     <div class="allShops">
-        <div class="shopContainer">
+        <div class="shopContainer" style="width: 220px">
             <app-shop
                     *ngFor="let shopCard of permanentShopCards"
                     [cardData]="shopCard"
@@ -8,13 +8,16 @@
             >
             </app-shop>
         </div>
-        <div class="shopContainer">
+        <div class="shopContainer" style="width: 420px">
             <app-shop
                     *ngFor="let shopCard of standardShopCards"
                     [cardData]="shopCard"
                     (onBuy)="spawnStandardCard($event)"
             >
             </app-shop>
+        </div>
+        <div class="shopContainer" style="width: 220px">
+            <app-shop-secret [possibleCards]="trapShopCards" (onBuy)="spawnTrapCard($event)"></app-shop-secret>
         </div>
     </div>
     <app-card
@@ -27,7 +30,8 @@
     ></app-card>
 
     <app-discard-pile #discardPile></app-discard-pile>
-    <app-draw-pile #drawPile (onDraw)="spawnPermanentCard($event)" (requestNewPile)="discardPileToDraw()"></app-draw-pile>
+    <app-draw-pile #drawPile (onDraw)="spawnPermanentCard($event)"
+                   (requestNewPile)="discardPileToDraw()"></app-draw-pile>
     <app-hp-counter></app-hp-counter>
 
     <div #trash class="trash"></div>

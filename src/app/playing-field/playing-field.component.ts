@@ -6,6 +6,7 @@ import {Card} from "../models/card";
 import {allCards} from "../cardsDB";
 
 const allAvailableStandardCards = Object.values(allCards).filter(e => e.type === 'follower' || e.type === 'spell').sort(() => Math.random() - 0.5);
+const allAvailableTrapCards = Object.values(allCards).filter(e => e.type === 'trap').sort(() => Math.random() - 0.5);
 
 @Component({
     selector: 'app-playing-field',
@@ -18,6 +19,7 @@ export class PlayingFieldComponent {
     cards: Array<Card> = [];
     permanentShopCards: Array<Card> = [];
     standardShopCards: Array<Card> = [];
+    trapShopCards: Array<Card> = [];
 
     @ViewChild('discardPile', {read: ElementRef}) discardPileRef: ElementRef;
     @ViewChild('discardPile', {read: DiscardPileComponent}) discardPile: DiscardPileComponent;
@@ -25,9 +27,12 @@ export class PlayingFieldComponent {
     @ViewChild('trash', {read: ElementRef}) trashRef: ElementRef;
 
     constructor() {
-        this.permanentShopCards.push(...Object.values(allCards).filter(e => e.type === 'permanent'));
+        this.permanentShopCards.push(...Object.values(allCards).filter(e => e.type === 'mana'));
         for (let i = 0; i < 6 && allAvailableStandardCards.length > 0; i++) {
             this.standardShopCards.push(allAvailableStandardCards.pop());
+        }
+        for (let i = 0; i < 3 && allAvailableTrapCards.length > 0; i++) {
+            this.trapShopCards.push(allAvailableTrapCards.pop());
         }
     }
 
@@ -46,6 +51,13 @@ export class PlayingFieldComponent {
         if (allAvailableStandardCards.length > 0) {
             this.standardShopCards.push(allAvailableStandardCards.pop());
         }
+    }
+    spawnTrapCard($event: any) {
+        this.cards = [...this.cards, $event];
+        // this.trapShopCards = this.trapShopCards.filter(e => e.name !== $event.name);
+        // if (allAvailableStandardCards.length > 0) {
+        //     this.trapShopCards.push(allAvailableTrapCards.pop());
+        // }
     }
 
 
