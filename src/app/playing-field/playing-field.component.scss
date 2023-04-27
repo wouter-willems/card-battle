@@ -1,0 +1,48 @@
+:host {
+  display: block;
+  background: rgba(76, 175, 80, 0.3);
+  height: 100%;
+  padding: 6px;
+}
+.componentContainer {
+  height: 100%;
+  position: relative;
+}
+.allShops {
+  display: flex;
+  gap: 20px;
+  height: 100%;
+}
+.shopContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+app-card {
+  position: absolute;
+  cursor: pointer;
+}
+app-draw-pile {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+app-hp-counter {
+  position: absolute;
+  right: 150px;
+  bottom: 10px;
+}
+app-discard-pile {
+  position: absolute;
+  right: 10px;
+  bottom: 200px;
+}
+.trash {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  width: 50px;
+  height: 50px;
+  background: red;
+}

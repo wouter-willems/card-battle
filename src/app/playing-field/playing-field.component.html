@@ -1,0 +1,34 @@
+<div class="componentContainer">
+    <div class="allShops">
+        <div class="shopContainer">
+            <app-shop
+                    *ngFor="let shopCard of permanentShopCards"
+                    [cardData]="shopCard"
+                    (onBuy)="spawnPermanentCard($event)"
+            >
+            </app-shop>
+        </div>
+        <div class="shopContainer">
+            <app-shop
+                    *ngFor="let shopCard of standardShopCards"
+                    [cardData]="shopCard"
+                    (onBuy)="spawnStandardCard($event)"
+            >
+            </app-shop>
+        </div>
+    </div>
+    <app-card
+            *ngFor="let card of cards"
+            [cardData]="card"
+            cdkDrag
+            (cdkDragStarted)="onDragStart($event)"
+            (cdkDragEnded)="onDragEnd($event, card)"
+            style="bottom: 20px; left: 20px;"
+    ></app-card>
+
+    <app-discard-pile #discardPile></app-discard-pile>
+    <app-draw-pile #drawPile (onDraw)="spawnPermanentCard($event)" (requestNewPile)="discardPileToDraw()"></app-draw-pile>
+    <app-hp-counter></app-hp-counter>
+
+    <div #trash class="trash"></div>
+</div>

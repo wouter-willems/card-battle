@@ -1,0 +1,7 @@
+<div>
+    total cards to draw: {{cardsToDraw.length}}
+</div>
+<div>
+    <button (click)="drawCard()" *ngIf="cardsToDraw.length > 0">draw</button>
+    <button (click)="requestNewPile.emit()" *ngIf="cardsToDraw.length === 0">request pile</button>
+</div>

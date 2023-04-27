@@ -1,0 +1,11 @@
+<div class="componentContainer">
+    <div class="name">{{cardData.name}}</div>
+    <div class="costToBuy">{{cardData.costToBuy}}</div>
+    <div class="costToPlay">{{cardData.costToPlay ?? 0}}</div>
+    <div class="description">{{cardData.description}}</div>
+    <img class="art" [src]="cardData.artSrc" />
+    <div class="textOverlay"></div>
+
+    <div class="attack" *ngIf="hasAttack()">{{cardData.attack}}</div>
+    <div class="defense" *ngIf="hasDefense()">{{cardData.defense}}</div>
+</div>
