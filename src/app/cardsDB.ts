@@ -62,13 +62,25 @@ export const allCards = {
         attack: 3,
         defense: 2,
     }),
+    treasureChest: new Card({
+        type: 'follower',
+        name: 'Treasure chest',
+        costToBuy: 4,
+        costToPlay: 1,
+        description: 'While stationed:',
+        description2: 'Draw 1 extra card during draw phase',
+        artSrc: 'https://i.pinimg.com/originals/fc/28/16/fc281611ae7d4c726c33a96ab1f8b37d.jpg',
+        attack: 0,
+        defense: 1,
+    }),
+
 
     fireball: new Card({
         type: 'spell',
         name: 'Fireball',
         costToBuy: 2,
         costToPlay: 1,
-        description: 'Kill an enemy follower that has less than 3 attack.',
+        description: 'Kill an enemy follower that has 3 or less defense.',
         artSrc: 'https://i.pinimg.com/originals/cc/c5/d6/ccc5d6f7c4f114a2baa3ab5c9712ee2e.jpg',
     }),
     Alchemy: new Card({

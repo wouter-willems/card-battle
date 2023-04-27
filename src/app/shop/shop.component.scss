@@ -1,7 +1,8 @@
+@import "variables";
 :host {
   display: block;
 }
 button {
-  width: 200px;
-  height: 60px;
+  width: $card-width;
+  height: $card-width * 0.2;
 }

@@ -1,6 +1,8 @@
+@import "variables";
+
 :host {
-  width: 200px * 1.5;
-  height: 300px * 1.5;
+  width: $card-width * 1.2;
+  height: $card-width * 1.6;
   background: #F4F4F4;
   border: 3px dashed darkgray;
   display: flex;

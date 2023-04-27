@@ -1,6 +1,6 @@
 <div class="componentContainer">
     <div class="allShops">
-        <div class="shopContainer" style="width: 220px">
+        <div class="shopContainer" style="width: 24vh">
             <app-shop
                     *ngFor="let shopCard of permanentShopCards"
                     [cardData]="shopCard"
@@ -8,7 +8,7 @@
             >
             </app-shop>
         </div>
-        <div class="shopContainer" style="width: 420px">
+        <div class="shopContainer" style="width: 80vh">
             <app-shop
                     *ngFor="let shopCard of standardShopCards"
                     [cardData]="shopCard"
@@ -16,7 +16,7 @@
             >
             </app-shop>
         </div>
-        <div class="shopContainer" style="width: 220px">
+        <div class="shopContainer" style="width: 24vh">
             <app-shop-secret [possibleCards]="trapShopCards" (onBuy)="spawnTrapCard($event)"></app-shop-secret>
         </div>
     </div>
