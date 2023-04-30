@@ -1,6 +1,6 @@
 <div class="componentContainer">
     <div class="allShops">
-        <div class="shopContainer" style="width: 24vh">
+        <div class="shopContainer">
             <app-shop
                     *ngFor="let shopCard of permanentShopCards"
                     [cardData]="shopCard"
@@ -8,31 +8,154 @@
             >
             </app-shop>
         </div>
-        <div class="shopContainer" style="width: 80vh">
-            <app-shop
-                    *ngFor="let shopCard of standardShopCards"
-                    [cardData]="shopCard"
-                    (onBuy)="spawnStandardCard($event)"
-            >
-            </app-shop>
-        </div>
-        <div class="shopContainer" style="width: 24vh">
+        <div class="shopContainer standard">
+            <div class="shopRow">
+                <app-shop
+                        *ngFor="let shopCard of getFirstStandCardsBatch()"
+                        [cardData]="shopCard"
+                        (onBuy)="spawnStandardCard($event)"
+                >
+                </app-shop>
+            </div>
+            <div class="shopRow">
+                <app-shop
+                        *ngFor="let shopCard of getSecondStandCardsBatch()"
+                        [cardData]="shopCard"
+                        (onBuy)="spawnStandardCard($event)"
+                >
+                </app-shop>
+            </div>
             <app-shop-secret [possibleCards]="trapShopCards" (onBuy)="spawnTrapCard($event)"></app-shop-secret>
+        </div>
+        <div class="shopContainer">
         </div>
     </div>
     <app-card
             *ngFor="let card of cards"
             [cardData]="card"
-            cdkDrag
-            (cdkDragStarted)="onDragStart($event)"
-            (cdkDragEnded)="onDragEnd($event, card)"
-            style="bottom: 20px; left: 20px;"
+            [selected]="selectedCard === card"
+            (onSelect)="selectedCard = $event"
     ></app-card>
 
-    <app-discard-pile #discardPile></app-discard-pile>
-    <app-draw-pile #drawPile (onDraw)="spawnPermanentCard($event)"
-                   (requestNewPile)="discardPileToDraw()"></app-draw-pile>
+    <div class="playerField">
+
+        <app-hand [tpl]="handCardTpl"></app-hand>
+    </div>
+    <div class="manaStack">
+        <app-card-hold-space #manaStack [tpl]="holdTpl"></app-card-hold-space>
+        <button (click)="putCard(manaStack)">Put as mana</button>
+    </div>
     <app-hp-counter></app-hp-counter>
 
+    <app-draw-pile
+        #drawPile (onDraw)="putCardInHand($event)"
+        (requestNewPile)="discardPileToDraw()"
+    ></app-draw-pile>
+    <app-discard-pile #discardPile (click)="discardCard()"></app-discard-pile>
     <div #trash class="trash"></div>
+
+    <div class="battleAndStation">
+        <div class="station">
+            <div>
+                <app-card-hold-space #station1 [tpl]="stationTpl"></app-card-hold-space>
+                <button (click)="putCard(station1)">+</button>
+            </div>
+            <div>
+                <app-card-hold-space #station2 [tpl]="stationTpl"></app-card-hold-space>
+                <button (click)="putCard(station2)">+</button>
+            </div>
+            <div>
+                <app-card-hold-space #station3 [tpl]="stationTpl"></app-card-hold-space>
+                <button (click)="putCard(station3)">+</button>
+            </div>
+            <div>
+                <app-card-hold-space #station4 [tpl]="stationTpl"></app-card-hold-space>
+                <button (click)="putCard(station4)">+</button>
+            </div>
+        </div>
+        <div class="battle">
+            <div>
+                <app-card-hold-space #battle1 [tpl]="stationTpl"></app-card-hold-space>
+                <button (click)="putCard(battle1)">+</button>
+            </div>
+            <div>
+                <app-card-hold-space #battle2 [tpl]="stationTpl"></app-card-hold-space>
+                <button (click)="putCard(battle2)">+</button>
+            </div>
+            <div>
+                <app-card-hold-space #battle3 [tpl]="stationTpl"></app-card-hold-space>
+                <button (click)="putCard(battle3)">+</button>
+            </div>
+            <div>
+                <app-card-hold-space #battle4 [tpl]="stationTpl"></app-card-hold-space>
+                <button (click)="putCard(battle4)">+</button>
+            </div>
+        </div>
+        <div class="battle">
+            <div>
+                <app-card-hold-space #battle5 [tpl]="stationTpl"></app-card-hold-space>
+                <button (click)="putCard(battle5)">+</button>
+            </div>
+            <div>
+                <app-card-hold-space #battle6 [tpl]="stationTpl"></app-card-hold-space>
+                <button (click)="putCard(battle6)">+</button>
+            </div>
+            <div>
+                <app-card-hold-space #battle7 [tpl]="stationTpl"></app-card-hold-space>
+                <button (click)="putCard(battle7)">+</button>
+            </div>
+            <div>
+                <app-card-hold-space #battle8 [tpl]="stationTpl"></app-card-hold-space>
+                <button (click)="putCard(battle8)">+</button>
+            </div>
+        </div>
+        <div class="station">
+            <div>
+                <app-card-hold-space #station5 [tpl]="stationTpl"></app-card-hold-space>
+                <button (click)="putCard(station5)">+</button>
+            </div>
+            <div>
+                <app-card-hold-space #station6 [tpl]="stationTpl"></app-card-hold-space>
+                <button (click)="putCard(station6)">+</button>
+            </div>
+            <div>
+                <app-card-hold-space #station7 [tpl]="stationTpl"></app-card-hold-space>
+                <button (click)="putCard(station7)">+</button>
+            </div>
+            <div>
+                <app-card-hold-space #station8 [tpl]="stationTpl"></app-card-hold-space>
+                <button (click)="putCard(station8)">+</button>
+            </div>
+        </div>
+    </div>
 </div>
+
+<ng-template #handCardTpl let-card="card" let-index="index">
+    <app-card
+            class="handCard"
+            [style]="getOffset(card, index)"
+            [cardData]="card"
+            [selected]="selectedCard === card"
+            (onSelect)="selectCard($event)"
+    ></app-card>
+</ng-template>
+
+<ng-template #holdTpl let-card="card" let-index="index">
+    <app-card
+            class="handCard"
+            [style]="getOffsetVert(card, index)"
+            [cardData]="card"
+            [selected]="selectedCard === card"
+            (onSelect)="selectCard($event)"
+    ></app-card>
+</ng-template>
+
+<ng-template #stationTpl let-card="card" let-index="index">
+    <app-card
+            class="handCard"
+            [style]="getOffsetVert(card, index)"
+            [cardData]="card"
+            [selected]="selectedCard === card"
+            (onSelect)="selectCard($event)"
+    ></app-card>
+</ng-template>

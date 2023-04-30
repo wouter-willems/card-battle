@@ -1,48 +1,105 @@
+@import "variables";
 :host {
   display: block;
   background: rgba(76, 175, 80, 0.3);
   height: 100%;
-  padding: 6px;
 }
+
 .componentContainer {
   height: 100%;
   position: relative;
 }
+
 .allShops {
   display: flex;
   gap: 20px;
   height: 100%;
+  width: 80vw;
 }
+
 .shopContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  flex-wrap: wrap;
+  app-shop {
+    margin-bottom: 10px;
+  }
+  .shopRow {
+    flex-grow: 1;
+    display: flex;
+    gap: 10px;
+  }
 }
+
 app-card {
   position: absolute;
   cursor: pointer;
 }
-app-draw-pile {
-  position: absolute;
-  right: 10px;
+
+.playerField {
+  position: fixed;
   bottom: 10px;
+  left: $card-width * 2.5;
+  gap: 20px;
+  background: green;
+  display: flex;
 }
+
 app-hp-counter {
   position: absolute;
-  right: 150px;
+  left: 10px;
   bottom: 10px;
 }
 app-discard-pile {
   position: absolute;
-  right: 10px;
-  bottom: 200px;
+  left: 100px;
+  bottom: 10px;
 }
-.trash {
+app-draw-pile {
   position: absolute;
-  left: 0px;
-  bottom: 0px;
-  width: 50px;
-  height: 50px;
-  background: red;
+  left: 200px;
+  bottom: 10px;
+}
+
+.manaStack {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  app-card-hold-space {
+    position: relative;;
+  }
+}
+
+.battleAndStation {
+  position: fixed;
+  top: 10px;
+  right: $card-width * 1.5;
+
+  .battle {
+    display: flex;
+    gap: 10px;
+    > div {
+      display: flex;
+    }
+  }
+  .station {
+    display: flex;
+    gap: 10px;
+    > div {
+      display: flex;
+    }
+  }
+  app-card-hold-space {
+    position: relative;;
+  }
+}
+
+app-hand {
+  position: relative;
+  width: $card-width * 2;
+}
+.handCard {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  &:hover {
+    z-index: 1000 !important;
+  }
 }

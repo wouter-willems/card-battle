@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {Card} from "../models/card";
 
 @Component({
@@ -8,6 +8,7 @@ import {Card} from "../models/card";
 })
 export class DiscardPileComponent {
   public discardedCards: Array<Card> = [];
+  @Output() onDiscardRequest = new EventEmitter<void>;
 
   public insert(card) {
     this.discardedCards.push(card);

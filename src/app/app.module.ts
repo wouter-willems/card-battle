@@ -12,6 +12,8 @@ import { ShopComponent } from './shop/shop.component';
 import { HpCounterComponent } from './hp-counter/hp-counter.component';
 import {ShopSecretComponent} from "./shop-secret/shop-secret.component";
 import {MatDialogModule} from "@angular/material/dialog";
+import { CardHoldSpaceComponent } from './card-hold-space/card-hold-space.component';
+import { HandComponent } from './hand/hand.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +24,9 @@ import {MatDialogModule} from "@angular/material/dialog";
         DiscardPileComponent,
         ShopComponent,
         HpCounterComponent,
-        ShopSecretComponent
+        ShopSecretComponent,
+        CardHoldSpaceComponent,
+        HandComponent
     ],
     imports: [
         BrowserModule,

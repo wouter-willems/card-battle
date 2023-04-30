@@ -1,0 +1,13 @@
+@import "variables";
+
+:host {
+  display: block;
+}
+app-card {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  &:hover {
+    z-index: 1000 !important;
+  }
+}

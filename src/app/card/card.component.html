@@ -1,7 +1,7 @@
-<div class="componentContainer">
+<div class="componentContainer" (click)="onSelect.emit(cardData)">
     <div class="type" *ngIf="showType()">{{cardData.type}}</div>
     <div class="attributes" *ngIf="showAttributes()">{{cardData.attributes}}</div>
-    <div class="name" [ngClass]="{isSpell: cardData.type === 'spell'}">{{cardData.name}}</div>
+    <div class="name" [ngClass]="{isSpell: cardData.type === 'spell', hasDescription: cardData.description}">{{cardData.name}}</div>
     <div class="costToBuy">{{cardData.costToBuy}}</div>
     <div class="costToPlay" *ngIf="cardData.type !== 'mana'">{{cardData.costToPlay ?? 0}}</div>
     <div class="mana" *ngIf="cardData.type === 'mana'">{{cardData.mana}}</div>
@@ -16,4 +16,6 @@
 
     <div class="attack" *ngIf="hasAttack()">{{cardData.attack}}</div>
     <div class="defense" *ngIf="hasDefense()">{{cardData.defense}}</div>
+
+    <div class="selected" *ngIf="selected"></div>
 </div>
