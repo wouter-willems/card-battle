@@ -52,7 +52,7 @@
         (requestNewPile)="discardPileToDraw()"
     ></app-draw-pile>
     <app-discard-pile #discardPile (click)="discardCard()"></app-discard-pile>
-    <div #trash class="trash"></div>
+    <button #trash class="trash" (click)="trashCard()">Trash</button>
 
     <div class="battleAndStation">
         <div class="station">

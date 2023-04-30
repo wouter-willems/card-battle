@@ -122,7 +122,7 @@ export const allCards = {
         name: 'Alchemy',
         costToBuy: 3,
         costToPlay: 1,
-        description: 'Trash top 2 mana cards that are in play. Gain 1 mana crystal and discard it.',
+        description: 'Trash top 2 cards from your mana stack. Gain 1 mana crystal and discard it.',
         artSrc: 'https://wallpapercrafter.com/desktop3/976497-alchemy-artwork-Blood-And-Wine-digital-art-Grey.jpg',
     }),
 

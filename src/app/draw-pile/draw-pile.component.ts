@@ -16,6 +16,10 @@ export class DrawPileComponent {
     }
 
     drawCard() {
+        if (this.cardsToDraw.length === 0) {
+            this.requestNewPile.emit();
+            return;
+        }
         const card = this.cardsToDraw.pop();
         this.onDraw.emit(card);
     }

@@ -27,6 +27,7 @@ export class PlayingFieldComponent {
     @ViewChild('discardPile', {read: ElementRef}) discardPileRef: ElementRef;
     @ViewChild('discardPile', {read: DiscardPileComponent}) discardPile: DiscardPileComponent;
     @ViewChildren(CardHoldSpaceComponent, {read: CardHoldSpaceComponent}) holds: QueryList<CardHoldSpaceComponent>;
+    @ViewChild('manaStack', {read: CardHoldSpaceComponent}) manaStack: CardHoldSpaceComponent;
     @ViewChild('drawPile', {read: DrawPileComponent}) drawPile: DrawPileComponent;
     @ViewChild('trash', {read: ElementRef}) trashRef: ElementRef;
     @ViewChild(HandComponent, {read: HandComponent}) handRef: HandComponent;
@@ -39,6 +40,18 @@ export class PlayingFieldComponent {
         for (let i = 0; i < 3 && allAvailableTrapCards.length > 0; i++) {
             this.trapShopCards.push(allAvailableTrapCards.pop());
         }
+        document.addEventListener("keyup", (event) => {
+            if (event.key === 'Control') {
+                console.log(this.manaStack);
+                this.putCard(this.manaStack);
+            }
+            if (event.key === ' ') {
+                this.drawPile.drawCard();
+            }
+            if(event.key === 'd') {
+                this.discardCard();
+            }
+        });
     }
 
     ngOnInit() {
@@ -184,5 +197,10 @@ export class PlayingFieldComponent {
             stack.insert(this.selectedCard);
             this.selectedCard = null;
         }
+    }
+
+    trashCard() {
+        this.removeCardFromAnyHold();
+        this.selectedCard = null;
     }
 }
