@@ -3,8 +3,12 @@ import {Card} from "./models/card";
 export class GameState {
     player1Mana: Array<Card>;
     player2Mana: Array<Card>;
+
     standardShopCards: Array<Card>;
     allAvailableStandardCards: Card[];
+    trapShopCards: Array<Card>;
+    allAvailableTrapCards: Card[];
+
     battle1: Array<Card>;
     battle2: Array<Card>;
     battle3: Array<Card>;
@@ -22,4 +26,5 @@ export class GameState {
     station6: Array<Card>;
     station7: Array<Card>;
     station8: Array<Card>;
+
 }

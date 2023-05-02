@@ -145,6 +145,7 @@ export const allCards = {
         description: 'On enemy summon',
         description2: 'Kill follower that has more than 4 attack',
         artSrc: 'https://cdna.artstation.com/p/assets/images/images/012/191/120/large/legowo-hadi-spike-trap.jpg?1533536614',
-        attributes: [Attribute.SINGLE_USE]
+        attributes: [Attribute.SINGLE_USE],
+        isHidden: true,
     }),
 }

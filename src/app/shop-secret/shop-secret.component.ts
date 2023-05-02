@@ -9,7 +9,7 @@ import {MatDialog} from "@angular/material/dialog";
 })
 export class ShopSecretComponent {
     @Input() possibleCards: Array<Card>;
-    @Output() onBuy = new EventEmitter<Card>();
+    @Output() onBuy = new EventEmitter<{bought: Card, possible: Array<Card>}>();
     @ViewChild('dialog') dialogRef = {} as TemplateRef<any>;
     public options: Array<Card>;
     private bought = false;
@@ -20,11 +20,9 @@ export class ShopSecretComponent {
     public buy() {
         this.bought = false;
         this.options = [];
-        console.log(this.possibleCards);
         for (let i = 0; i < 3 && this.possibleCards.length > 0; i++) {
             this.options.push(this.possibleCards.pop());
         }
-        console.log(this.options);
         this.dialog.open(this.dialogRef).afterClosed().subscribe(e => {
             if (!this.bought) {
                 this.possibleCards.push(...this.options);
@@ -35,12 +33,12 @@ export class ShopSecretComponent {
 
     buyCard(option: Card) {
         this.bought = true;
-        this.onBuy.emit(option);
         this.dialog.closeAll();
         this.options.forEach(e => {
             if (e.name !== option.name) {
                 this.possibleCards.push(e);
             }
         });
+        this.onBuy.emit({bought:option, possible: this.possibleCards});
     }
 }

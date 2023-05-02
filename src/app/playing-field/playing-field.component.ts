@@ -10,7 +10,6 @@ import {GameState} from "../gameState";
 import {WsServiceService} from "../ws-service.service";
 
 let allAvailableStandardCards = Object.values(allCards).filter(e => e.type === 'follower' || e.type === 'spell').sort(() => Math.random() - 0.5);
-let allAvailableTrapCards = Object.values(allCards).filter(e => e.type === 'trap').sort(() => Math.random() - 0.5);
 
 @Component({
     selector: 'app-playing-field',
@@ -23,7 +22,7 @@ export class PlayingFieldComponent {
     selectedCard: Card;
     permanentShopCards: Array<Card> = [];
     standardShopCards: Array<Card> = [];
-    trapShopCards: Array<Card> = [];
+    trapShopCards: Array<Card> = Object.values(allCards).filter(e => e.type === 'trap').sort(() => Math.random() - 0.5);
 
     private player: number;
     public otherPlayerManaStack: Array<Card>;
@@ -59,9 +58,6 @@ export class PlayingFieldComponent {
         for (let i = 0; i < 6 && allAvailableStandardCards.length > 0; i++) {
             this.standardShopCards.push(allAvailableStandardCards.pop());
         }
-        for (let i = 0; i < 3 && allAvailableTrapCards.length > 0; i++) {
-            this.trapShopCards.push(allAvailableTrapCards.pop());
-        }
         document.addEventListener("keyup", (event) => {
             if (event.key === 'Control') {
                 console.log(this.manaStack);
@@ -86,16 +82,20 @@ export class PlayingFieldComponent {
         this.ws.connect(newState => {
             if (newState === 'player1') {
                 this.player = 1;
+                // window.alert('player 1');
                 return;
             }
             if (newState === 'player2') {
                 this.player = 2;
+                // window.alert('player 2');
                 return;
             }
             const parsed: GameState = JSON.parse(JSON.parse(newState));
 
             this.standardShopCards = parsed.standardShopCards;
             allAvailableStandardCards = parsed.allAvailableStandardCards;
+
+            this.trapShopCards = parsed.trapShopCards;
 
             this.battle1.setCards(parsed.battle1);
             this.battle2.setCards(parsed.battle2);
@@ -147,7 +147,9 @@ export class PlayingFieldComponent {
     }
 
     spawnTrapCard($event: any) {
-        this.putCardInHand($event);
+        this.putCardInHand($event.bought);
+        this.trapShopCards = $event.possible;
+        console.log($event.possible);
         this.sendGameState();
     }
 
@@ -232,6 +234,7 @@ export class PlayingFieldComponent {
         }
         state.standardShopCards = this.standardShopCards;
         state.allAvailableStandardCards = allAvailableStandardCards;
+        state.trapShopCards = this.trapShopCards;
 
         state.battle1 = this.battle1.getCards();
         state.battle2 = this.battle2.getCards();
