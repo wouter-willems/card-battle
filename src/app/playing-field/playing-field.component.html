@@ -30,15 +30,8 @@
         <div class="shopContainer">
         </div>
     </div>
-    <app-card
-            *ngFor="let card of cards"
-            [cardData]="card"
-            [selected]="selectedCard === card"
-            (onSelect)="selectedCard = $event"
-    ></app-card>
 
     <div class="playerField">
-
         <app-hand [tpl]="handCardTpl"></app-hand>
     </div>
     <div class="manaStack">
@@ -130,6 +123,10 @@
     </div>
 </div>
 
+<div class="opponentMana">
+    <div *ngFor="let mana of getOtherPlayerManaStack()">{{mana}}</div>
+</div>
+
 <ng-template #handCardTpl let-card="card" let-index="index">
     <app-card
             class="handCard"
@@ -157,5 +154,7 @@
             [cardData]="card"
             [selected]="selectedCard === card"
             (onSelect)="selectCard($event)"
+            [hideCard]="card.isHidden"
+            (onShow)="showCard(card)"
     ></app-card>
 </ng-template>

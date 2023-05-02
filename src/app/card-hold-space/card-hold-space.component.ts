@@ -23,4 +23,10 @@ export class CardHoldSpaceComponent {
   public remove(card: Card) {
     this.cards = this.cards.filter((e) => card !== e);
   }
+  public getCards() {
+    return this.cards;
+  }
+  public setCards(cards: Array<Card>) {
+    this.cards = cards;
+  }
 }

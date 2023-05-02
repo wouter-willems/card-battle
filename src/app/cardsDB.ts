@@ -135,6 +135,7 @@ export const allCards = {
         description: 'On enemy spell cast',
         description2: 'Nullify the last SPELL that is played',
         artSrc: 'https://i.pinimg.com/originals/df/67/2c/df672ccbb4d5f1bac3d8e900ba9154e7.jpg',
+        isHidden: true,
     }),
     spikeTrap: new Card({
         type: 'trap',

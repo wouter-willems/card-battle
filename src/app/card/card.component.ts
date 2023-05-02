@@ -9,7 +9,9 @@ import {Card} from "../models/card";
 export class CardComponent {
     @Input() cardData: Card;
     @Input() selected: boolean = false;
+    @Input() hideCard: boolean = false;
     @Output() onSelect = new EventEmitter<Card>();
+    @Output() onShow = new EventEmitter<Card>();
 
     hasAttack() {
         return Number.isFinite(this.cardData.attack)
@@ -25,9 +27,5 @@ export class CardComponent {
 
     showAttributes() {
         return this.cardData.attributes?.length > 0;
-    }
-
-    bla() {
-        console.log('click')
     }
 }

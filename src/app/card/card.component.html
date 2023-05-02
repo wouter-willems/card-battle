@@ -18,4 +18,8 @@
     <div class="defense" *ngIf="hasDefense()">{{cardData.defense}}</div>
 
     <div class="selected" *ngIf="selected"></div>
+
+    <div class="cardBack" *ngIf="hideCard">
+        <button (click)="onShow.emit()">show</button>
+    </div>
 </div>

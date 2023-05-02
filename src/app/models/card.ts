@@ -10,6 +10,7 @@ export class Card {
     public defense;
     public artSrc;
     public attributes;
+    public isHidden;
 
     constructor(data: any) {
         this.type = data.type;
@@ -23,6 +24,7 @@ export class Card {
         this.defense = data.defense;
         this.artSrc = data.artSrc;
         this.attributes = data.attributes;
+        this.isHidden = data.isHidden;
     }
 
     static copy(card: Card): Card {
