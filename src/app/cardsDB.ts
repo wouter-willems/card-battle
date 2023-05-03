@@ -65,6 +65,16 @@ export const allCards = {
         attack: 3,
         defense: 2,
     }),
+    henchMan: new Card({
+        type: 'follower',
+        name: 'Henchman',
+        costToBuy: 5,
+        costToPlay: 2,
+        description: 'You may place this under a creature to increase its attack and defense by 2 and give it TRAMPLE',
+        artSrc: 'https://cdna.artstation.com/p/assets/images/images/009/328/478/large/nicolas-dechezelles-king-s-assassin-a.jpg?1518372283',
+        attack: 2,
+        defense: 2,
+    }),
     treasureChest: new Card({
         type: 'follower',
         name: 'Treasure chest',
@@ -108,6 +118,14 @@ export const allCards = {
         costToPlay: 1,
         description: 'Kill an enemy follower that has 3 or less defense.',
         artSrc: 'https://i.pinimg.com/originals/cc/c5/d6/ccc5d6f7c4f114a2baa3ab5c9712ee2e.jpg',
+    }),
+    defendersAdvantage: new Card({
+        type: 'spell',
+        name: 'Enchantment: Defenders advantage',
+        costToBuy: 4,
+        costToPlay: 2,
+        description: 'When this creature blocks, immediately draw 1 card',
+        artSrc: 'https://c4.wallpaperflare.com/wallpaper/451/405/83/video-games-knights-league-of-legends-fantasy-art-armor-shield-artwork-swords-leona-1680x1050-wal-abstract-fantasy-hd-art-wallpaper-preview.jpg',
     }),
     weaken: new Card({
         type: 'spell',
