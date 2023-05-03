@@ -48,7 +48,7 @@ export const allCards = {
     scavenger: new Card({
         type: 'follower',
         name: 'Scavenger',
-        costToBuy: 3,
+        costToBuy: 4,
         costToPlay: 1,
         description: 'On play:',
         description2: 'Reveal the top card of your deck. If it is mana, play it. Discard it otherwise.',
@@ -79,7 +79,7 @@ export const allCards = {
     manaDrake: new Card({
         type: 'follower',
         name: 'Mana Drake',
-        costToBuy: 5,
+        costToBuy: 6,
         costToPlay: 1,
         description: 'On attacking enemy player:',
         description2: 'Gain 1 mana crystal and discard it',
