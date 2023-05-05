@@ -4,7 +4,7 @@ import {delayWhen, map, retryWhen} from 'rxjs/operators';
 import {timer} from 'rxjs';
 
 // const wsUrl = 'localhost';
-const wsUrl = '84.27.20.147';
+const wsUrl = window.location.hostname;
 
 @Injectable({
     providedIn: 'root'
