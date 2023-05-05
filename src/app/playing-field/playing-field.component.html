@@ -44,6 +44,11 @@
         #drawPile (onDraw)="putCardInHand($event)"
         (requestNewPile)="discardPileToDraw()"
     ></app-draw-pile>
+    <div class="playerButtons">
+        <button (click)="player = 1" [disabled]="player === 1">P1</button>
+        <button (click)="player = 2" [disabled]="player === 2">P2</button>
+        <div>{{isOnline() ? 'Online' : 'Offline'}}</div>
+    </div>
     <app-discard-pile #discardPile (click)="discardCard()"></app-discard-pile>
     <button #trash class="trash" (click)="trashCard()">Trash</button>
 

@@ -1,4 +1,6 @@
 const WebSocket = require('ws');
+const express = require('express');
+const app = express();
 
 const wss = new WebSocket.Server({ port: 4201 });
 
@@ -8,6 +10,7 @@ wss.on('connection', function connection(ws) {
     console.log('got connection');
     connections.push(ws);
     console.log(connections.length)
+    ws.send('connected');
     ws.on('message', function incoming(message) {
         connections.forEach(e => {
             if (e !== ws) {
@@ -21,8 +24,9 @@ wss.on('connection', function connection(ws) {
         connections = connections.filter(e => e !== ws);
         console.log('disconnect');
     });
-
-    ws.send('player' + connections.length);
 });
 
 console.log('listening on 4201')
+
+app.use(express.static('static'))
+app.listen(4200);

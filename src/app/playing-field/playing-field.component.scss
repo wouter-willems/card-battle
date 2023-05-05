@@ -62,6 +62,13 @@ app-draw-pile {
   left: 200px;
   bottom: 10px;
 }
+.playerButtons {
+  position: absolute;
+  left: 260px;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
 
 .manaStack {
   position: fixed;

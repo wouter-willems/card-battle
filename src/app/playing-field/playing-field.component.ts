@@ -24,7 +24,7 @@ export class PlayingFieldComponent {
     standardShopCards: Array<Card> = [];
     trapShopCards: Array<Card> = Object.values(allCards).filter(e => e.type === 'trap').sort(() => Math.random() - 0.5);
 
-    private player: number;
+    public player: number;
     public otherPlayerManaStack: Array<Card>;
 
     @ViewChild('discardPile', {read: ElementRef}) discardPileRef: ElementRef;
@@ -60,7 +60,6 @@ export class PlayingFieldComponent {
         }
         document.addEventListener("keyup", (event) => {
             if (event.key === 'Control') {
-                console.log(this.manaStack);
                 this.putCard(this.manaStack);
             }
             if (event.key === ' ') {
@@ -80,14 +79,7 @@ export class PlayingFieldComponent {
         }, 500);
 
         this.ws.connect(newState => {
-            if (newState === 'player1') {
-                this.player = 1;
-                // window.alert('player 1');
-                return;
-            }
-            if (newState === 'player2') {
-                this.player = 2;
-                // window.alert('player 2');
+            if (newState === 'connected') {
                 return;
             }
             const parsed: GameState = JSON.parse(JSON.parse(newState));
@@ -266,5 +258,9 @@ export class PlayingFieldComponent {
         console.log('show')
         card.isHidden = false;
         this.sendGameState();
+    }
+
+    public isOnline() {
+        return this.ws.isOnline();
     }
 }
