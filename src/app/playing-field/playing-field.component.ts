@@ -10,7 +10,7 @@ import {GameState} from "../gameState";
 import {WsServiceService} from "../ws-service.service";
 
 let allAvailableStandardCards = Object.values(allCards).filter(e => e.type === 'follower' || e.type === 'spell').sort(() => Math.random() - 0.5);
-
+console.log(Object.keys(allCards).length);
 @Component({
     selector: 'app-playing-field',
     templateUrl: './playing-field.component.html',

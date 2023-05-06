@@ -1,1 +1,16 @@
-DISCARD: {{discardedCards.length}}
+<button (click)="onDiscardRequest.emit()">
+    DISCARD: {{discardedCards.length}}
+</button>
+
+<button (click)="openPile()">Open discard pile</button>
+
+
+<ng-template #dialog>
+    <div class="optionsContainer">
+
+        <div *ngFor="let card of discardedCards">
+            <app-card [cardData]="card"></app-card>
+            <button (click)="toHand(card)">To hand</button>
+        </div>
+    </div>
+</ng-template>

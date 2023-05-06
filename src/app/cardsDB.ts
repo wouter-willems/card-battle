@@ -213,15 +213,48 @@ export const allCards = {
         defense: 4,
     }),
 
+    warHornBearer: new Card({
+        type: 'follower',
+        name: 'War Horn Bearer',
+        costToBuy: 7,
+        costToPlay: 3,
+        description: 'On play',
+        description2: 'Draw any follower from your discard pile',
+        artSrc: '',
+        attack: 5,
+        defense: 5,
+        attributes: []
+    }),
+    shieldLord: new Card({
+        type: 'follower',
+        name: 'Shield Lord',
+        costToBuy: 7,
+        costToPlay: 1,
+        artSrc: '',
+        attack: 4,
+        defense: 7,
+        attributes: []
+    }),
+
     behemoth: new Card({
         type: 'follower',
         name: 'Behemoth',
         costToBuy: 8,
         costToPlay: 3,
         description: 'On block:',
-        description2: 'Draw 1 extra card next turn',
+        description2: 'Draw 1 card',
         artSrc: 'https://external-preview.redd.it/aJnDihMqSQwTSA1k3hQKRhh57KhJGJenWoPi37zYX-Q.jpg?width=640&crop=smart&auto=webp&s=f710bbd551df21e49623d7ccf1bd01d849c6a5b4',
         attack: 6,
+        defense: 5,
+        attributes: [Attribute.TRAMPLE]
+    }),
+    rockGiant: new Card({
+        type: 'follower',
+        name: 'Rock Giant',
+        costToBuy: 8,
+        costToPlay: 2,
+        artSrc: '',
+        attack: 7,
         defense: 5,
         attributes: [Attribute.TRAMPLE]
     }),
@@ -232,7 +265,15 @@ export const allCards = {
         name: 'Fireball',
         costToBuy: 2,
         costToPlay: 1,
-        description: 'Kill an enemy follower that has 3 or less defense.',
+        description: 'Kill an enemy follower that has a maximum of 3 defense.',
+        artSrc: 'https://i.pinimg.com/originals/cc/c5/d6/ccc5d6f7c4f114a2baa3ab5c9712ee2e.jpg',
+    }),
+    staticDischarge: new Card({
+        type: 'spell',
+        name: 'Static Discharge',
+        costToBuy: 2,
+        costToPlay: 2,
+        description: 'Kill all enemy followers that have a maximum of 2 attack or 2 defense',
         artSrc: 'https://i.pinimg.com/originals/cc/c5/d6/ccc5d6f7c4f114a2baa3ab5c9712ee2e.jpg',
     }),
     weaken: new Card({

@@ -49,7 +49,7 @@
         <button (click)="player = 2" [disabled]="player === 2">P2</button>
         <div>{{isOnline() ? 'Online' : 'Offline'}}</div>
     </div>
-    <app-discard-pile #discardPile (click)="discardCard()"></app-discard-pile>
+    <app-discard-pile #discardPile (onDiscardRequest)="discardCard()" (onHandRequest)="putCardInHand($event)"></app-discard-pile>
     <button #trash class="trash" (click)="trashCard()">Trash</button>
 
     <div class="battleAndStation">
