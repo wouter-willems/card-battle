@@ -4,7 +4,6 @@
   display: block;
   border: 1px solid black;
   border-radius: 8px;
-  overflow: hidden;
   box-shadow: rgb(243, 243, 243) 3px 5px 20px;
   width: $card-width;
   height: $card-height;
@@ -171,12 +170,16 @@
 
 .selected {
   position: absolute;
-  width: 30px;
-  height: 30px;
-  background: whitesmoke;
-  bottom: 0;
-  left: 50%;
+  top: -10px;
+  left: 25%;
   z-index: 10;
+
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+
+  border-top: 30px solid #f00;
 }
 
 .cardBack {
