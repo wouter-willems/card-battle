@@ -73,9 +73,14 @@ export class PlayingFieldComponent {
 
     ngOnInit() {
         setTimeout(() => {
-            this.putCardInHand(Card.copy(allCards.manaPebble));
-            this.putCardInHand(Card.copy(allCards.manaCrystal));
-            this.putCardInHand(Card.copy(allCards.manaDrake));
+            this.discardPile.insert(Card.copy(allCards.manaPebble));
+            this.discardPile.insert(Card.copy(allCards.manaPebble));
+            this.discardPile.insert(Card.copy(allCards.manaPebble));
+            this.discardPile.insert(Card.copy(allCards.manaPebble));
+            this.discardPile.insert(Card.copy(allCards.manaPebble));
+            this.discardPile.insert(Card.copy(allCards.manaPebble));
+            this.discardPile.insert(Card.copy(allCards.manaPebble));
+            this.discardPile.insert(Card.copy(allCards.manaPebble));
         }, 500);
 
         this.ws.connect(newState => {
