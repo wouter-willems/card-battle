@@ -4,6 +4,7 @@
             <app-shop
                     *ngFor="let shopCard of permanentShopCards"
                     [cardData]="shopCard"
+                    [permanent]="true"
                     (onBuy)="spawnPermanentCard($event)"
             >
             </app-shop>
@@ -35,18 +36,18 @@
         <app-hand [tpl]="handCardTpl"></app-hand>
     </div>
     <div class="manaStack">
-        <app-card-hold-space #manaStack [tpl]="holdTpl"></app-card-hold-space>
-        <button (click)="putCard(manaStack)">Put as mana</button>
+        <app-card-hold-space #manaStack [tpl]="holdTpl" dest="mana1"></app-card-hold-space>
+        <button (click)="putCard('mana1')">Put as mana</button>
     </div>
     <app-hp-counter></app-hp-counter>
 
     <app-draw-pile
-        #drawPile (onDraw)="putCardInHand($event)"
+        #drawPile
         (requestNewPile)="discardPileToDraw()"
     ></app-draw-pile>
     <div class="playerButtons">
-        <button (click)="player = 1" [disabled]="player === 1">P1</button>
-        <button (click)="player = 2" [disabled]="player === 2">P2</button>
+        <button (click)="player = 1; playerChosen()" [disabled]="player === 1">P1</button>
+        <button (click)="player = 2; playerChosen()" [disabled]="player === 2">P2</button>
         <div>{{isOnline() ? 'Online' : 'Offline'}}</div>
     </div>
     <app-discard-pile #discardPile (onDiscardRequest)="discardCard()" (onHandRequest)="putCardInHand($event)"></app-discard-pile>
@@ -55,74 +56,74 @@
     <div class="battleAndStation">
         <div class="station">
             <div>
-                <app-card-hold-space #station1 [tpl]="stationTpl"></app-card-hold-space>
-                <button (click)="putCard(station1)">+</button>
+                <app-card-hold-space #station1 [tpl]="stationTpl" dest="station1"></app-card-hold-space>
+                <button (click)="putCard('station1')">+</button>
             </div>
             <div>
-                <app-card-hold-space #station2 [tpl]="stationTpl"></app-card-hold-space>
-                <button (click)="putCard(station2)">+</button>
+                <app-card-hold-space #station2 [tpl]="stationTpl" dest="station2"></app-card-hold-space>
+                <button (click)="putCard('station2')">+</button>
             </div>
             <div>
-                <app-card-hold-space #station3 [tpl]="stationTpl"></app-card-hold-space>
-                <button (click)="putCard(station3)">+</button>
+                <app-card-hold-space #station3 [tpl]="stationTpl" dest="station3"></app-card-hold-space>
+                <button (click)="putCard('station3')">+</button>
             </div>
             <div>
-                <app-card-hold-space #station4 [tpl]="stationTpl"></app-card-hold-space>
-                <button (click)="putCard(station4)">+</button>
-            </div>
-        </div>
-        <div class="battle">
-            <div>
-                <app-card-hold-space #battle1 [tpl]="stationTpl"></app-card-hold-space>
-                <button (click)="putCard(battle1)">+</button>
-            </div>
-            <div>
-                <app-card-hold-space #battle2 [tpl]="stationTpl"></app-card-hold-space>
-                <button (click)="putCard(battle2)">+</button>
-            </div>
-            <div>
-                <app-card-hold-space #battle3 [tpl]="stationTpl"></app-card-hold-space>
-                <button (click)="putCard(battle3)">+</button>
-            </div>
-            <div>
-                <app-card-hold-space #battle4 [tpl]="stationTpl"></app-card-hold-space>
-                <button (click)="putCard(battle4)">+</button>
+                <app-card-hold-space #station4 [tpl]="stationTpl" dest="station4"></app-card-hold-space>
+                <button (click)="putCard('station4')">+</button>
             </div>
         </div>
         <div class="battle">
             <div>
-                <app-card-hold-space #battle5 [tpl]="stationTpl"></app-card-hold-space>
-                <button (click)="putCard(battle5)">+</button>
+                <app-card-hold-space #battle1 [tpl]="stationTpl" dest="battle1"></app-card-hold-space>
+                <button (click)="putCard('battle1')">+</button>
             </div>
             <div>
-                <app-card-hold-space #battle6 [tpl]="stationTpl"></app-card-hold-space>
-                <button (click)="putCard(battle6)">+</button>
+                <app-card-hold-space #battle2 [tpl]="stationTpl" dest="battle2"></app-card-hold-space>
+                <button (click)="putCard('battle2')">+</button>
             </div>
             <div>
-                <app-card-hold-space #battle7 [tpl]="stationTpl"></app-card-hold-space>
-                <button (click)="putCard(battle7)">+</button>
+                <app-card-hold-space #battle3 [tpl]="stationTpl" dest="battle3"></app-card-hold-space>
+                <button (click)="putCard('battle3')">+</button>
             </div>
             <div>
-                <app-card-hold-space #battle8 [tpl]="stationTpl"></app-card-hold-space>
-                <button (click)="putCard(battle8)">+</button>
+                <app-card-hold-space #battle4 [tpl]="stationTpl" dest="battle4"></app-card-hold-space>
+                <button (click)="putCard('battle4')">+</button>
+            </div>
+        </div>
+        <div class="battle">
+            <div>
+                <app-card-hold-space #battle5 [tpl]="stationTpl" dest="battle5"></app-card-hold-space>
+                <button (click)="putCard('battle5')">+</button>
+            </div>
+            <div>
+                <app-card-hold-space #battle6 [tpl]="stationTpl" dest="battle6"></app-card-hold-space>
+                <button (click)="putCard('battle6')">+</button>
+            </div>
+            <div>
+                <app-card-hold-space #battle7 [tpl]="stationTpl" dest="battle7"></app-card-hold-space>
+                <button (click)="putCard('battle7')">+</button>
+            </div>
+            <div>
+                <app-card-hold-space #battle8 [tpl]="stationTpl" dest="battle8"></app-card-hold-space>
+                <button (click)="putCard('battle8')">+</button>
             </div>
         </div>
         <div class="station">
             <div>
-                <app-card-hold-space #station5 [tpl]="stationTpl"></app-card-hold-space>
-                <button (click)="putCard(station5)">+</button>
+                <app-card-hold-space #station5 [tpl]="stationTpl" dest="station5"></app-card-hold-space>
+                <button (click)="putCard('station5')">+</button>
             </div>
             <div>
-                <app-card-hold-space #station6 [tpl]="stationTpl"></app-card-hold-space>
-                <button (click)="putCard(station6)">+</button>
+                <app-card-hold-space #station6 [tpl]="stationTpl" dest="station6"></app-card-hold-space>
+                <button (click)="putCard('station6')">+</button>
             </div>
             <div>
-                <app-card-hold-space #station7 [tpl]="stationTpl"></app-card-hold-space>
-                <button (click)="putCard(station7)">+</button>
+                <app-card-hold-space #station7 [tpl]="stationTpl" dest="station7"></app-card-hold-space>
+                <button (click)="putCard('station7')">+</button>
             </div>
             <div>
-                <app-card-hold-space #station8 [tpl]="stationTpl"></app-card-hold-space>
-                <button (click)="putCard(station8)">+</button>
+                <app-card-hold-space #station8 [tpl]="stationTpl" dest="station8"></app-card-hold-space>
+                <button (click)="putCard('station8')">+</button>
             </div>
         </div>
     </div>

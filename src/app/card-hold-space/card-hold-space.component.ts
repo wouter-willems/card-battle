@@ -1,5 +1,6 @@
 import {Component, ElementRef, Input} from '@angular/core';
 import {Card} from "../models/card";
+import {GameService} from "../game.service";
 
 @Component({
   selector: 'app-card-hold-space',
@@ -8,14 +9,19 @@ import {Card} from "../models/card";
 })
 export class CardHoldSpaceComponent {
   @Input() tpl;
+  @Input() dest;
+  public cards: Array<Card> = [];
 
   get nativeElement() {
     return this.elementRef.nativeElement;
   }
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef, private gameServ: GameService) {
+    this.gameServ.addMoveListener(() => {
+      this.cards = this.gameServ.getCardsFromDest(this.dest);
+    })
+  }
 
-  public cards: Array<Card> = [];
 
   public insert(card: Card) {
     this.cards = [...this.cards, card];

@@ -1,4 +1,15 @@
+function generateRandomString(length) {
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
 export class Card {
+    public id;
     public type;
     public name;
     public costToBuy;
@@ -12,8 +23,10 @@ export class Card {
     public attributes;
     public isHidden;
     public activated: boolean;
+    public ts;
 
     constructor(data: any) {
+        this.id = generateRandomString(20);
         this.type = data.type;
         this.name = data.name;
         this.costToBuy = data.costToBuy;
@@ -27,6 +40,7 @@ export class Card {
         this.attributes = data.attributes;
         this.isHidden = data.isHidden ?? false;
         this.activated = data.activated ?? true;
+        this.ts = new Date().getTime();
     }
 
     static copy(card: Card): Card {

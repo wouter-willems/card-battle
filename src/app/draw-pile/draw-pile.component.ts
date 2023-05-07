@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {Card} from "../models/card";
+import {GameService} from "../game.service";
 
 @Component({
     selector: 'app-draw-pile',
@@ -8,11 +9,12 @@ import {Card} from "../models/card";
 })
 export class DrawPileComponent {
     public cardsToDraw: Array<Card> = [];
-    @Output() onDraw = new EventEmitter<Card>;
     @Output() requestNewPile = new EventEmitter<void>;
 
-    constructor() {
-
+    constructor(private gameServ: GameService) {
+        this.gameServ.addMoveListener(() => {
+            this.cardsToDraw = this.gameServ.getDraw();
+        })
     }
 
     drawCard() {
@@ -21,7 +23,7 @@ export class DrawPileComponent {
             return;
         }
         const card = this.cardsToDraw.pop();
-        this.onDraw.emit(card);
+        this.gameServ.moveCard(card, 'hand1');
     }
 
     addCards(cards: Array<Card>) {

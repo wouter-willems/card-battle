@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Output, TemplateRef, ViewChild} from '@angular/core';
 import {Card} from "../models/card";
 import {MatDialog} from "@angular/material/dialog";
+import {GameService} from "../game.service";
 
 @Component({
   selector: 'app-discard-pile',
@@ -13,16 +14,19 @@ export class DiscardPileComponent {
   @Output() onHandRequest = new EventEmitter<Card>;
   @ViewChild('dialog') dialogRef = {} as TemplateRef<any>;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private gameServ: GameService) {
+    this.gameServ.addMoveListener(() => {
+      this.discardedCards = this.gameServ.getDiscarded();
+    })
   }
 
   public insert(card) {
     this.discardedCards.push(card);
   }
-  public emptyDiscardPile(): Array<Card> {
-    const allCards = [...this.discardedCards];
-    this.discardedCards = [];
-    return allCards;
+  public discardToDraw() {
+    this.discardedCards.forEach(e => {
+      this.gameServ.moveCard(e, 'draw1');
+    })
   }
 
   openPile() {

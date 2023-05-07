@@ -3,7 +3,6 @@ import {WebSocketSubject} from 'rxjs/webSocket';
 import {delayWhen, map, retryWhen} from 'rxjs/operators';
 import {timer} from 'rxjs';
 
-// const wsUrl = 'localhost';
 const wsUrl = window.location.hostname;
 
 @Injectable({

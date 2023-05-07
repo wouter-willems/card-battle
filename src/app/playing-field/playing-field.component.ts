@@ -8,8 +8,9 @@ import {CardHoldSpaceComponent} from "../card-hold-space/card-hold-space.compone
 import {HandComponent} from "../hand/hand.component";
 import {GameState} from "../gameState";
 import {WsServiceService} from "../ws-service.service";
+import {GameService} from "../game.service";
 
-let allAvailableStandardCards = Object.values(allCards).filter(e => e.type === 'follower' || e.type === 'spell').sort(() => Math.random() - 0.5);
+
 console.log(Object.keys(allCards).length);
 @Component({
     selector: 'app-playing-field',
@@ -53,14 +54,14 @@ export class PlayingFieldComponent {
     @ViewChild('station7', {read: CardHoldSpaceComponent}) station7: CardHoldSpaceComponent;
     @ViewChild('station8', {read: CardHoldSpaceComponent}) station8: CardHoldSpaceComponent;
 
-    constructor(private ws: WsServiceService) {
+    constructor(private ws: WsServiceService, private gameServ: GameService) {
         this.permanentShopCards.push(...Object.values(allCards).filter(e => e.type === 'mana'));
-        for (let i = 0; i < 6 && allAvailableStandardCards.length > 0; i++) {
-            this.standardShopCards.push(allAvailableStandardCards.pop());
-        }
+        // for (let i = 0; i < 6 && allAvailableStandardCards.length > 0; i++) {
+        //     this.standardShopCards.push(allAvailableStandardCards.pop());
+        // }
         document.addEventListener("keyup", (event) => {
             if (event.key === 'Control') {
-                this.putCard(this.manaStack);
+                this.putCard('mana1');
             }
             if (event.key === ' ') {
                 this.drawPile.drawCard();
@@ -71,75 +72,65 @@ export class PlayingFieldComponent {
         });
     }
 
-    ngOnInit() {
-        setTimeout(() => {
-            this.discardPile.insert(Card.copy(allCards.manaPebble));
-            this.discardPile.insert(Card.copy(allCards.manaPebble));
-            this.discardPile.insert(Card.copy(allCards.manaPebble));
-            this.discardPile.insert(Card.copy(allCards.manaPebble));
-            this.discardPile.insert(Card.copy(allCards.manaPebble));
-            this.discardPile.insert(Card.copy(allCards.manaPebble));
-            this.discardPile.insert(Card.copy(allCards.manaPebble));
-            this.discardPile.insert(Card.copy(allCards.manaPebble));
-        }, 500);
+    playerChosen() {
+        this.gameServ.moveCard(Card.copy(allCards.manaPebble), 'discard'+this.player);
+        this.gameServ.moveCard(Card.copy(allCards.manaCrystal), 'discard'+this.player);
+        this.gameServ.moveCard(Card.copy(allCards.manaBigCrystal), 'discard'+this.player);
+        this.gameServ.shuffleShop();
 
-        this.ws.connect(newState => {
-            if (newState === 'connected') {
-                return;
-            }
-            const parsed: GameState = JSON.parse(JSON.parse(newState));
-
-            this.standardShopCards = parsed.standardShopCards;
-            allAvailableStandardCards = parsed.allAvailableStandardCards;
-
-            this.trapShopCards = parsed.trapShopCards;
-
-            this.battle1.setCards(parsed.battle1);
-            this.battle2.setCards(parsed.battle2);
-            this.battle3.setCards(parsed.battle3);
-            this.battle4.setCards(parsed.battle4);
-            this.battle5.setCards(parsed.battle5);
-            this.battle6.setCards(parsed.battle6);
-            this.battle7.setCards(parsed.battle7);
-            this.battle8.setCards(parsed.battle8);
-
-            this.station1.setCards(parsed.station1);
-            this.station2.setCards(parsed.station2);
-            this.station3.setCards(parsed.station3);
-            this.station4.setCards(parsed.station4);
-            this.station5.setCards(parsed.station5);
-            this.station6.setCards(parsed.station6);
-            this.station7.setCards(parsed.station7);
-            this.station8.setCards(parsed.station8);
-
-            if (this.player === 1) {
-                this.manaStack.setCards(parsed.player1Mana ?? []);
-                this.otherPlayerManaStack = parsed.player2Mana ?? [];
-            }
-            if (this.player === 2) {
-                this.otherPlayerManaStack = parsed.player1Mana ?? [];
-                this.manaStack.setCards(parsed.player2Mana ?? []);
-            }
-        });
+        // this.ws.connect(newState => {
+        //     if (newState === 'connected') {
+        //         return;
+        //     }
+        //     const parsed: GameState = JSON.parse(JSON.parse(newState));
+        //
+        //     this.standardShopCards = parsed.standardShopCards;
+        //     // allAvailableStandardCards = parsed.allAvailableStandardCards;
+        //
+        //     this.trapShopCards = parsed.trapShopCards;
+        //
+        //     this.battle1.setCards(parsed.battle1);
+        //     this.battle2.setCards(parsed.battle2);
+        //     this.battle3.setCards(parsed.battle3);
+        //     this.battle4.setCards(parsed.battle4);
+        //     this.battle5.setCards(parsed.battle5);
+        //     this.battle6.setCards(parsed.battle6);
+        //     this.battle7.setCards(parsed.battle7);
+        //     this.battle8.setCards(parsed.battle8);
+        //
+        //     this.station1.setCards(parsed.station1);
+        //     this.station2.setCards(parsed.station2);
+        //     this.station3.setCards(parsed.station3);
+        //     this.station4.setCards(parsed.station4);
+        //     this.station5.setCards(parsed.station5);
+        //     this.station6.setCards(parsed.station6);
+        //     this.station7.setCards(parsed.station7);
+        //     this.station8.setCards(parsed.station8);
+        //
+        //     if (this.player === 1) {
+        //         this.manaStack.setCards(parsed.player1Mana ?? []);
+        //         this.otherPlayerManaStack = parsed.player2Mana ?? [];
+        //     }
+        //     if (this.player === 2) {
+        //         this.otherPlayerManaStack = parsed.player1Mana ?? [];
+        //         this.manaStack.setCards(parsed.player2Mana ?? []);
+        //     }
+        // });
     }
 
-    spawnPermanentCard($event: Card) {
-        this.discardPile.insert($event);
+    spawnPermanentCard(card: Card) {
+        this.gameServ.moveCard(card, 'discard1');
         this.sendGameState();
     }
 
     putCardInHand(card: Card) {
-        this.handRef.insert(card);
+        this.gameServ.moveCard(card, 'hand1');
         this.selectedCard = null;
         this.sendGameState();
     }
 
-    spawnStandardCard($event: any) {
-        this.discardPile.insert($event);
-        this.standardShopCards = this.standardShopCards.filter(e => e.name !== $event.name);
-        if (allAvailableStandardCards.length > 0) {
-            this.standardShopCards.push(allAvailableStandardCards.pop());
-        }
+    spawnStandardCard(card: Card) {
+        this.gameServ.moveCard(card, 'discard1');
         this.sendGameState();
     }
 
@@ -151,24 +142,27 @@ export class PlayingFieldComponent {
     }
 
     discardPileToDraw() {
-        const cards = this.discardPile.emptyDiscardPile();
-        this.drawPile.addCards(cards.sort(() => Math.random() - 0.5));
+        this.discardPile.discardToDraw();
+        // this.drawPile.addCards(cards.sort(() => Math.random() - 0.5));
         this.sendGameState();
     }
 
     getFirstStandCardsBatch() {
+        const c = this.gameServ.getCardsFromDest('standardShop');
+        console.log(c)
         return [
-            this.standardShopCards[0],
-            this.standardShopCards[1],
-            this.standardShopCards[2],
+            c[0],
+            c[1],
+            c[2],
         ].filter(Boolean)
     }
 
     getSecondStandCardsBatch() {
+        const c = this.gameServ.getCardsFromDest('standardShop');
         return [
-            this.standardShopCards[3],
-            this.standardShopCards[4],
-            this.standardShopCards[5],
+            c[3],
+            c[4],
+            c[5],
         ].filter(Boolean)
     }
 
@@ -204,10 +198,11 @@ export class PlayingFieldComponent {
         });
     }
 
-    putCard(stack: CardHoldSpaceComponent) {
+    putCard(dest: string) {
         if (this.selectedCard) {
-            this.removeCardFromAnyHold();
-            stack.insert(this.selectedCard);
+            this.gameServ.moveCard(this.selectedCard, dest);
+            // this.removeCardFromAnyHold();
+            // stack.insert(this.selectedCard);
             this.selectedCard = null;
             this.sendGameState();
         }
@@ -220,39 +215,39 @@ export class PlayingFieldComponent {
     }
 
     sendGameState() {
-        const state = new GameState();
-        if (this.player === 1) {
-            state.player1Mana = this.manaStack.getCards();
-            state.player2Mana = this.otherPlayerManaStack;
-        }
-        if (this.player === 2) {
-            state.player1Mana = this.otherPlayerManaStack;
-            state.player2Mana = this.manaStack.getCards();
-        }
-        state.standardShopCards = this.standardShopCards;
-        state.allAvailableStandardCards = allAvailableStandardCards;
-        state.trapShopCards = this.trapShopCards;
-
-        state.battle1 = this.battle1.getCards();
-        state.battle2 = this.battle2.getCards();
-        state.battle3 = this.battle3.getCards();
-        state.battle4 = this.battle4.getCards();
-        state.battle5 = this.battle5.getCards();
-        state.battle6 = this.battle6.getCards();
-        state.battle7 = this.battle7.getCards();
-        state.battle8 = this.battle8.getCards();
-
-        state.station1 = this.station1.getCards();
-        state.station2 = this.station2.getCards();
-        state.station3 = this.station3.getCards();
-        state.station4 = this.station4.getCards();
-        state.station5 = this.station5.getCards();
-        state.station6 = this.station6.getCards();
-        state.station7 = this.station7.getCards();
-        state.station8 = this.station8.getCards();
-
-        const stateString = JSON.stringify(state);
-        this.ws.send(stateString);
+        // const state = new GameState();
+        // if (this.player === 1) {
+        //     state.player1Mana = this.manaStack.getCards();
+        //     state.player2Mana = this.otherPlayerManaStack;
+        // }
+        // if (this.player === 2) {
+        //     state.player1Mana = this.otherPlayerManaStack;
+        //     state.player2Mana = this.manaStack.getCards();
+        // }
+        // state.standardShopCards = this.standardShopCards;
+        // // state.allAvailableStandardCards = allAvailableStandardCards;
+        // state.trapShopCards = this.trapShopCards;
+        //
+        // state.battle1 = this.battle1.getCards();
+        // state.battle2 = this.battle2.getCards();
+        // state.battle3 = this.battle3.getCards();
+        // state.battle4 = this.battle4.getCards();
+        // state.battle5 = this.battle5.getCards();
+        // state.battle6 = this.battle6.getCards();
+        // state.battle7 = this.battle7.getCards();
+        // state.battle8 = this.battle8.getCards();
+        //
+        // state.station1 = this.station1.getCards();
+        // state.station2 = this.station2.getCards();
+        // state.station3 = this.station3.getCards();
+        // state.station4 = this.station4.getCards();
+        // state.station5 = this.station5.getCards();
+        // state.station6 = this.station6.getCards();
+        // state.station7 = this.station7.getCards();
+        // state.station8 = this.station8.getCards();
+        //
+        // const stateString = JSON.stringify(state);
+        // this.ws.send(stateString);
     }
 
     getOtherPlayerManaStack() {
