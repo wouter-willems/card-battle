@@ -255,8 +255,11 @@ export class PlayingFieldComponent {
     }
 
     showCard(card: Card) {
-        console.log('show')
         card.isHidden = false;
+        this.sendGameState();
+    }
+    activateCard(card: Card) {
+        card.activated = true;
         this.sendGameState();
     }
 

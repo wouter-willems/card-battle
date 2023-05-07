@@ -12,6 +12,10 @@ export class HandComponent {
   public cards: Array<Card> = [];
 
   public insert(card: Card) {
+    card.isHidden = true;
+    if (card.type === 'trap') {
+      card.activated = false;
+    }
     this.cards = [...this.cards, card];
   }
   public remove(card: Card) {

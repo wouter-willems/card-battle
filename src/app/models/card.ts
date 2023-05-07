@@ -11,6 +11,7 @@ export class Card {
     public artSrc;
     public attributes;
     public isHidden;
+    public activated: boolean;
 
     constructor(data: any) {
         this.type = data.type;
@@ -22,9 +23,10 @@ export class Card {
         this.description2 = data.description2;
         this.attack = data.attack;
         this.defense = data.defense;
-        this.artSrc = data.artSrc;
+        this.artSrc = data.artSrc?.length > 0 ? data.artSrc : 'https://static.invenglobal.com/upload/image/2019/07/02/o1562078753250134.jpeg';
         this.attributes = data.attributes;
         this.isHidden = data.isHidden;
+        this.activated = data.activated ?? true;
     }
 
     static copy(card: Card): Card {

@@ -12,6 +12,7 @@ export class CardComponent {
     @Input() hideCard: boolean = false;
     @Output() onSelect = new EventEmitter<Card>();
     @Output() onShow = new EventEmitter<Card>();
+    @Output() onActivate = new EventEmitter<Card>();
 
     hasAttack() {
         return Number.isFinite(this.cardData.attack)
