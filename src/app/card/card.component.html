@@ -1,4 +1,5 @@
 <div class="componentContainer" (click)="onSelect.emit(cardData)">
+    {{cardData | json}}
     <div class="type" *ngIf="showType()">{{cardData.type}}</div>
     <div class="attributes" *ngIf="showAttributes()">{{cardData.attributes}}</div>
     <div class="name" [ngClass]="{isSpell: cardData.type === 'spell', hasDescription: cardData.description}">{{cardData.name}}</div>

@@ -25,7 +25,7 @@ export class Card {
         this.defense = data.defense;
         this.artSrc = data.artSrc?.length > 0 ? data.artSrc : 'https://static.invenglobal.com/upload/image/2019/07/02/o1562078753250134.jpeg';
         this.attributes = data.attributes;
-        this.isHidden = data.isHidden;
+        this.isHidden = data.isHidden ?? false;
         this.activated = data.activated ?? true;
     }
 
