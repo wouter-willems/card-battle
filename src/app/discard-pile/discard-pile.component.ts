@@ -25,7 +25,7 @@ export class DiscardPileComponent {
   }
   public discardToDraw() {
     this.discardedCards.forEach(e => {
-      this.gameServ.moveCard(e, 'draw1');
+      this.gameServ.moveCard(e, 'draw'+this.gameServ.player);
     })
   }
 

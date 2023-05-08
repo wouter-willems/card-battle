@@ -36,8 +36,8 @@
         <app-hand [tpl]="handCardTpl"></app-hand>
     </div>
     <div class="manaStack">
-        <app-card-hold-space #manaStack [tpl]="holdTpl" dest="mana1"></app-card-hold-space>
-        <button (click)="putCard('mana1')">Put as mana</button>
+        <app-card-hold-space #manaStack [tpl]="holdTpl" [dest]="getManaDest()"></app-card-hold-space>
+        <button (click)="putCard('mana'+player)">Put as mana</button>
     </div>
     <app-hp-counter></app-hp-counter>
 
@@ -46,8 +46,8 @@
         (requestNewPile)="discardPileToDraw()"
     ></app-draw-pile>
     <div class="playerButtons">
-        <button (click)="player = 1; playerChosen()" [disabled]="player === 1">P1</button>
-        <button (click)="player = 2; playerChosen()" [disabled]="player === 2">P2</button>
+        <button (click)="playerChosen(1)" [disabled]="player === 1">P1</button>
+        <button (click)="playerChosen(2)" [disabled]="player === 2">P2</button>
         <div>{{isOnline() ? 'Online' : 'Offline'}}</div>
     </div>
     <app-discard-pile #discardPile (onDiscardRequest)="discardCard()" (onHandRequest)="putCardInHand($event)"></app-discard-pile>

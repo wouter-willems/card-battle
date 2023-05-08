@@ -2,7 +2,7 @@ const WebSocket = require('ws');
 const express = require('express');
 const app = express();
 
-const wss = new WebSocket.Server({ port: 4201 });
+const wss = new WebSocket.Server({ port: 4202 });
 
 let connections = [];
 
@@ -26,7 +26,7 @@ wss.on('connection', function connection(ws) {
     });
 });
 
-console.log('listening on 4200')
+console.log('listening on 4201')
 
 app.use(express.static('static'))
-app.listen(4200);
+app.listen(4201);

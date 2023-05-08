@@ -23,7 +23,7 @@ export class DrawPileComponent {
             return;
         }
         const card = this.cardsToDraw.pop();
-        this.gameServ.moveCard(card, 'hand1');
+        this.gameServ.moveCard(card, 'hand'+this.gameServ.player);
     }
 
     addCards(cards: Array<Card>) {

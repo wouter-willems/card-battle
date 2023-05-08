@@ -61,7 +61,7 @@ export class PlayingFieldComponent {
         // }
         document.addEventListener("keyup", (event) => {
             if (event.key === 'Control') {
-                this.putCard('mana1');
+                this.putCard('mana' + this.player);
             }
             if (event.key === ' ') {
                 this.drawPile.drawCard();
@@ -72,11 +72,20 @@ export class PlayingFieldComponent {
         });
     }
 
-    playerChosen() {
-        this.gameServ.moveCard(Card.copy(allCards.manaPebble), 'discard'+this.player);
-        this.gameServ.moveCard(Card.copy(allCards.manaCrystal), 'discard'+this.player);
-        this.gameServ.moveCard(Card.copy(allCards.manaBigCrystal), 'discard'+this.player);
-        this.gameServ.shuffleShop();
+    async playerChosen(p: number) {
+        this.player = p;
+        this.gameServ.setPlayer(p);
+        await this.gameServ.connectWs();
+        console.log('connected')
+
+        if (this.player === 1) {
+            this.gameServ.init();
+            this.gameServ.moveCard(Card.copy(allCards.manaPebble), 'discard'+this.player);
+            this.gameServ.moveCard(Card.copy(allCards.manaCrystal), 'discard'+this.player);
+            this.gameServ.moveCard(Card.copy(allCards.manaBigCrystal), 'discard'+this.player);
+            this.gameServ.shuffleShop();
+        }
+
 
         // this.ws.connect(newState => {
         //     if (newState === 'connected') {
@@ -119,25 +128,24 @@ export class PlayingFieldComponent {
     }
 
     spawnPermanentCard(card: Card) {
-        this.gameServ.moveCard(card, 'discard1');
+        this.gameServ.moveCard(card, 'discard'+this.gameServ.player);
         this.sendGameState();
     }
 
     putCardInHand(card: Card) {
-        this.gameServ.moveCard(card, 'hand1');
+        this.gameServ.moveCard(card, 'hand'+this.gameServ.player);
         this.selectedCard = null;
         this.sendGameState();
     }
 
     spawnStandardCard(card: Card) {
-        this.gameServ.moveCard(card, 'discard1');
+        this.gameServ.moveCard(card, 'discard'+this.gameServ.player);
         this.sendGameState();
     }
 
     spawnTrapCard($event: any) {
         this.putCardInHand($event.bought);
         this.trapShopCards = $event.possible;
-        console.log($event.possible);
         this.sendGameState();
     }
 
@@ -149,7 +157,6 @@ export class PlayingFieldComponent {
 
     getFirstStandCardsBatch() {
         const c = this.gameServ.getCardsFromDest('standardShop');
-        console.log(c)
         return [
             c[0],
             c[1],
@@ -251,7 +258,9 @@ export class PlayingFieldComponent {
     }
 
     getOtherPlayerManaStack() {
-        return (this.otherPlayerManaStack ?? []).map(e => e.mana ?? 1)
+        const  manaDest = 'mana' + (this.player === 1 ? '2' : '1');
+        const otherStack = this.gameServ.getCardsFromDest(manaDest)
+        return (otherStack ?? []).map(e => e.mana ?? 1)
     }
 
     showCard(card: Card) {
@@ -265,5 +274,9 @@ export class PlayingFieldComponent {
 
     public isOnline() {
         return this.ws.isOnline();
+    }
+
+    getManaDest() {
+        return 'mana' + this.player;
     }
 }

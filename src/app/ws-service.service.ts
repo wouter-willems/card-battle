@@ -18,7 +18,7 @@ export class WsServiceService {
     public connect(updateStateFn: any) {
         console.log('connecting')
         this.connection = new WebSocketSubject({
-            url: `ws://${wsUrl}:4201`,
+            url: `ws://${wsUrl}:4202`,
             deserializer: e => e.data,
             closeObserver: {
                 next: () => this._isOnline = false
