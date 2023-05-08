@@ -12,7 +12,7 @@
         <div class="shopContainer standard">
             <div class="shopRow">
                 <app-shop
-                        *ngFor="let shopCard of getFirstStandCardsBatch()"
+                        *ngFor="let shopCard of firstShopBatch"
                         [cardData]="shopCard"
                         (onBuy)="spawnStandardCard($event)"
                 >
@@ -20,7 +20,7 @@
             </div>
             <div class="shopRow">
                 <app-shop
-                        *ngFor="let shopCard of getSecondStandCardsBatch()"
+                        *ngFor="let shopCard of secondShopBatch"
                         [cardData]="shopCard"
                         (onBuy)="spawnStandardCard($event)"
                 >

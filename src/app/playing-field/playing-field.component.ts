@@ -24,6 +24,8 @@ export class PlayingFieldComponent {
     permanentShopCards: Array<Card> = [];
     standardShopCards: Array<Card> = [];
     trapShopCards: Array<Card> = Object.values(allCards).filter(e => e.type === 'trap').sort(() => Math.random() - 0.5);
+    firstShopBatch: Array<Card> = [];
+    secondShopBatch: Array<Card> = [];
 
     public player: number;
     public otherPlayerManaStack: Array<Card>;
@@ -76,7 +78,22 @@ export class PlayingFieldComponent {
         this.player = p;
         this.gameServ.setPlayer(p);
         await this.gameServ.connectWs();
-        console.log('connected')
+        console.log('connected');
+
+        this.gameServ.addMoveListener(() => {
+            const c = this.gameServ.getCardsFromDest('standardShop');
+            this.firstShopBatch = [
+                c[0],
+                c[1],
+                c[2],
+            ].filter(Boolean);
+
+            this.secondShopBatch = [
+                c[3],
+                c[4],
+                c[5],
+            ].filter(Boolean)
+        })
 
         if (this.player === 1) {
             this.gameServ.init();
@@ -129,48 +146,24 @@ export class PlayingFieldComponent {
 
     spawnPermanentCard(card: Card) {
         this.gameServ.moveCard(card, 'discard'+this.gameServ.player);
-        this.sendGameState();
     }
 
     putCardInHand(card: Card) {
         this.gameServ.moveCard(card, 'hand'+this.gameServ.player);
         this.selectedCard = null;
-        this.sendGameState();
     }
 
     spawnStandardCard(card: Card) {
         this.gameServ.moveCard(card, 'discard'+this.gameServ.player);
-        this.sendGameState();
     }
 
     spawnTrapCard($event: any) {
         this.putCardInHand($event.bought);
         this.trapShopCards = $event.possible;
-        this.sendGameState();
     }
 
     discardPileToDraw() {
         this.discardPile.discardToDraw();
-        // this.drawPile.addCards(cards.sort(() => Math.random() - 0.5));
-        this.sendGameState();
-    }
-
-    getFirstStandCardsBatch() {
-        const c = this.gameServ.getCardsFromDest('standardShop');
-        return [
-            c[0],
-            c[1],
-            c[2],
-        ].filter(Boolean)
-    }
-
-    getSecondStandCardsBatch() {
-        const c = this.gameServ.getCardsFromDest('standardShop');
-        return [
-            c[3],
-            c[4],
-            c[5],
-        ].filter(Boolean)
     }
 
     getOffset(card: Card, index: number) {
@@ -193,7 +186,6 @@ export class PlayingFieldComponent {
             this.removeCardFromAnyHold();
             this.discardPile.insert(this.selectedCard);
             this.selectedCard = null;
-            this.sendGameState();
         }
     }
 
@@ -201,7 +193,6 @@ export class PlayingFieldComponent {
         this.handRef.remove(this.selectedCard);
         this.holds.forEach(e => {
             e.remove(this.selectedCard);
-            this.sendGameState();
         });
     }
 
@@ -211,50 +202,12 @@ export class PlayingFieldComponent {
             // this.removeCardFromAnyHold();
             // stack.insert(this.selectedCard);
             this.selectedCard = null;
-            this.sendGameState();
         }
     }
 
     trashCard() {
         this.removeCardFromAnyHold();
         this.selectedCard = null;
-        this.sendGameState();
-    }
-
-    sendGameState() {
-        // const state = new GameState();
-        // if (this.player === 1) {
-        //     state.player1Mana = this.manaStack.getCards();
-        //     state.player2Mana = this.otherPlayerManaStack;
-        // }
-        // if (this.player === 2) {
-        //     state.player1Mana = this.otherPlayerManaStack;
-        //     state.player2Mana = this.manaStack.getCards();
-        // }
-        // state.standardShopCards = this.standardShopCards;
-        // // state.allAvailableStandardCards = allAvailableStandardCards;
-        // state.trapShopCards = this.trapShopCards;
-        //
-        // state.battle1 = this.battle1.getCards();
-        // state.battle2 = this.battle2.getCards();
-        // state.battle3 = this.battle3.getCards();
-        // state.battle4 = this.battle4.getCards();
-        // state.battle5 = this.battle5.getCards();
-        // state.battle6 = this.battle6.getCards();
-        // state.battle7 = this.battle7.getCards();
-        // state.battle8 = this.battle8.getCards();
-        //
-        // state.station1 = this.station1.getCards();
-        // state.station2 = this.station2.getCards();
-        // state.station3 = this.station3.getCards();
-        // state.station4 = this.station4.getCards();
-        // state.station5 = this.station5.getCards();
-        // state.station6 = this.station6.getCards();
-        // state.station7 = this.station7.getCards();
-        // state.station8 = this.station8.getCards();
-        //
-        // const stateString = JSON.stringify(state);
-        // this.ws.send(stateString);
     }
 
     getOtherPlayerManaStack() {
@@ -265,11 +218,9 @@ export class PlayingFieldComponent {
 
     showCard(card: Card) {
         card.isHidden = false;
-        this.sendGameState();
     }
     activateCard(card: Card) {
         card.activated = true;
-        this.sendGameState();
     }
 
     public isOnline() {
