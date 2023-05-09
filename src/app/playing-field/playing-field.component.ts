@@ -97,9 +97,9 @@ export class PlayingFieldComponent {
 
         if (this.player === 1) {
             this.gameServ.init();
-            this.gameServ.moveCard(Card.copy(allCards.manaPebble), 'discard'+this.player);
-            this.gameServ.moveCard(Card.copy(allCards.manaCrystal), 'discard'+this.player);
-            this.gameServ.moveCard(Card.copy(allCards.manaBigCrystal), 'discard'+this.player);
+            // this.gameServ.moveCard(Card.copy(allCards.manaPebble), 'discard'+this.player);
+            // this.gameServ.moveCard(Card.copy(allCards.manaCrystal), 'discard'+this.player);
+            // this.gameServ.moveCard(Card.copy(allCards.manaBigCrystal), 'discard'+this.player);
             this.gameServ.shuffleShop();
         }
 
@@ -206,8 +206,10 @@ export class PlayingFieldComponent {
     }
 
     trashCard() {
-        this.removeCardFromAnyHold();
-        this.selectedCard = null;
+        if (this.selectedCard) {
+            this.gameServ.moveCard(this.selectedCard, 'trash');
+            this.selectedCard = null;
+        }
     }
 
     getOtherPlayerManaStack() {
