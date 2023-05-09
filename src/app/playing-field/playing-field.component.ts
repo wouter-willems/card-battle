@@ -62,10 +62,10 @@ export class PlayingFieldComponent {
         //     this.standardShopCards.push(allAvailableStandardCards.pop());
         // }
         document.addEventListener("keyup", (event) => {
-            if (event.key === 'Control') {
+            if (event.key === 'm') {
                 this.putCard('mana' + this.player);
             }
-            if (event.key === ' ') {
+            if (event.key === 'a') {
                 this.drawPile.drawCard();
             }
             if(event.key === 'd') {
@@ -183,24 +183,14 @@ export class PlayingFieldComponent {
 
     discardCard() {
         if (this.selectedCard) {
-            this.removeCardFromAnyHold();
-            this.discardPile.insert(this.selectedCard);
+            this.gameServ.moveCard(this.selectedCard, 'discard'+this.player);
             this.selectedCard = null;
         }
-    }
-
-    private removeCardFromAnyHold() {
-        this.handRef.remove(this.selectedCard);
-        this.holds.forEach(e => {
-            e.remove(this.selectedCard);
-        });
     }
 
     putCard(dest: string) {
         if (this.selectedCard) {
             this.gameServ.moveCard(this.selectedCard, dest);
-            // this.removeCardFromAnyHold();
-            // stack.insert(this.selectedCard);
             this.selectedCard = null;
         }
     }
