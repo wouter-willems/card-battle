@@ -18,11 +18,16 @@ export class GameService {
 
     }
 
-    init() {
+    async init() {
         const standards = Object.values(allCards).filter(e => e.type === 'follower' || e.type === 'spell');
-        standards.sort(() => Math.random() - 0.5).forEach((e, i) => {
+        let i = 0;
+        for (const e of standards.sort(() => Math.random() - 0.5)) {
+            await new Promise((resolve, reject) => {
+                setTimeout(resolve, 10);
+            });
             this.moveCard(e, 'standardShop', standards.length - 1 === i);
-        })
+            i++;
+        }
     }
 
     public setPlayer(p: number) {
