@@ -147,6 +147,9 @@
     </div>
 </div>
 
+<div class="opponentHand">
+    Opponent hand: {{getOtherPlayerHand()}}
+</div>
 <div class="opponentMana">
     <div *ngFor="let mana of getOtherPlayerManaStack()">{{mana}}</div>
 </div>

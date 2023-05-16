@@ -1,4 +1,4 @@
 <div>
-    <button (click)="drawCard()" *ngIf="cardsToDraw.length > 0">draw</button>
+    <button (click)="drawCard()" *ngIf="cardsToDraw.length > 0">draw {{cardsToDraw.length}}</button>
     <button (click)="requestNewPile.emit()" *ngIf="cardsToDraw.length === 0">shuffle</button>
 </div>

@@ -207,6 +207,12 @@ export class PlayingFieldComponent {
         const otherStack = this.gameServ.getCardsFromDest(manaDest)
         return (otherStack ?? []).map(e => e.mana ?? 1)
     }
+    getOtherPlayerHand() {
+        const dest = 'hand' + (this.player === 1 ? '2' : '1');
+        const otherStack = this.gameServ.getCardsFromDest(dest);
+        return otherStack.length;
+        // return (otherStack ?? []).map(e => e.mana ?? 1)
+    }
 
     showCard(card: Card) {
         card.isHidden = false;

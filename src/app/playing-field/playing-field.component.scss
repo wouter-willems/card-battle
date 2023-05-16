@@ -116,9 +116,16 @@ app-hand {
   }
 }
 
-.opponentMana {
+.opponentHand {
   position: fixed;
   top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.opponentMana {
+  position: fixed;
+  top: 50px;
   right: 10px;
   display: flex;
   flex-direction: column;
