@@ -26,7 +26,14 @@
                 >
                 </app-shop>
             </div>
-            <app-shop-secret [possibleCards]="trapShopCards" (onBuy)="spawnTrapCard($event)"></app-shop-secret>
+            <div class="shopRow">
+                <app-shop
+                        *ngFor="let shopCard of thirdShopBatch"
+                        [cardData]="shopCard"
+                        (onBuy)="spawnStandardCard($event)"
+                >
+                </app-shop>
+            </div>
         </div>
         <div class="shopContainer">
         </div>

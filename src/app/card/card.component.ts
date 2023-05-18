@@ -15,11 +15,11 @@ export class CardComponent {
     @Output() onActivate = new EventEmitter<Card>();
 
     hasAttack() {
-        return Number.isFinite(this.cardData.attack)
+        return Number.isFinite(this.cardData.attack) || Number.isFinite(this.cardData.power)
     }
 
     hasDefense() {
-        return Number.isFinite(this.cardData.defense)
+        return Number.isFinite(this.cardData.defense) || Number.isFinite(this.cardData.move)
     }
 
     showType() {

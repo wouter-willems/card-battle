@@ -3,7 +3,7 @@ import {CdkDragEnd, CdkDragMove, CdkDragStart} from "@angular/cdk/drag-drop";
 import {DiscardPileComponent} from "../discard-pile/discard-pile.component";
 import {DrawPileComponent} from "../draw-pile/draw-pile.component";
 import {Card} from "../models/card";
-import {allCards} from "../cardsDB";
+import {allCards} from "../cardsDB2";
 import {CardHoldSpaceComponent} from "../card-hold-space/card-hold-space.component";
 import {HandComponent} from "../hand/hand.component";
 import {GameState} from "../gameState";
@@ -26,6 +26,7 @@ export class PlayingFieldComponent {
     trapShopCards: Array<Card> = Object.values(allCards).filter(e => e.type === 'trap').sort(() => Math.random() - 0.5);
     firstShopBatch: Array<Card> = [];
     secondShopBatch: Array<Card> = [];
+    thirdShopBatch: Array<Card> = [];
 
     public player: number;
     public otherPlayerManaStack: Array<Card>;
@@ -92,6 +93,12 @@ export class PlayingFieldComponent {
                 c[3],
                 c[4],
                 c[5],
+            ].filter(Boolean)
+
+            this.thirdShopBatch = [
+                c[6],
+                c[7],
+                c[8],
             ].filter(Boolean)
         })
 

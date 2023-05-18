@@ -14,8 +14,8 @@
     <img class="art" [src]="cardData.artSrc" />
     <div class="textOverlay"></div>
 
-    <div class="attack" *ngIf="hasAttack()">{{cardData.attack}}</div>
-    <div class="defense" *ngIf="hasDefense()">{{cardData.defense}}</div>
+    <div class="attack" *ngIf="hasAttack()">{{cardData.attack ?? cardData.power}}</div>
+    <div class="defense" *ngIf="hasDefense()">{{cardData.defense ?? cardData.move}}</div>
 
     <div class="selected" *ngIf="selected"></div>
 

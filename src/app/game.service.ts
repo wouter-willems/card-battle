@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Injectable, NgZone} from '@angular/core';
 import {Card} from "./models/card";
-import {allCards} from "./cardsDB";
+import {allCards} from "./cardsDB2";
 import {WsServiceService} from "./ws-service.service";
 import {firstValueFrom, Subject} from "rxjs";
 
