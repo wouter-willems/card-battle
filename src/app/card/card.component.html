@@ -11,7 +11,7 @@
             {{cardData.description2}}
         </div>
     </div>
-    <img class="art" [src]="cardData.artSrc" />
+    <img class="art" [src]="'/assets/art/'+cardData.artSrc" />
     <div class="textOverlay"></div>
 
     <div class="attack" *ngIf="hasAttack()">{{cardData.attack ?? cardData.power}}</div>
