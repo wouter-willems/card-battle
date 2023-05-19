@@ -75,6 +75,10 @@ export class PlayingFieldComponent {
         });
     }
 
+    ngOnInit () {
+        // this.playerChosen(1);
+    }
+
     async playerChosen(p: number) {
         this.player = p;
         this.gameServ.setPlayer(p);
