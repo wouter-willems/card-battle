@@ -1,5 +1,6 @@
 const WebSocket = require('ws');
 const express = require('express');
+const path = require("path");
 const app = express();
 
 const wss = new WebSocket.Server({ port: 4202 });
@@ -29,4 +30,7 @@ wss.on('connection', function connection(ws) {
 console.log('listening on 4201')
 
 app.use(express.static('static'))
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'static/index.html'));
+});
 app.listen(4201);
