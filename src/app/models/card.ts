@@ -25,6 +25,7 @@ export class Card {
     public mana: number;
     public description: string;
     public description2: string;
+    public flavour: string;
     public power: number;
     public attack: number;
     public defense: number;
@@ -45,6 +46,7 @@ export class Card {
         this.costToPlay = data.costToPlay;
         this.description = data.description;
         this.description2 = data.description2;
+        this.flavour = data.flavour;
         this.power = data.power;
         this.attack = data.attack;
         this.defense = data.defense;

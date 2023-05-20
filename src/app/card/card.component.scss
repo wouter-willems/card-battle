@@ -99,10 +99,20 @@
   letter-spacing: 1.5px;
   font-weight: bold;
   &.isSpell {
-    background: darkorange;
     color: white;
     border-radius: 9999px;
     padding: 2px 8px;
+  }
+  &.isMana {
+    color: white;
+    border-radius: 9999px;
+    padding: 2px 8px;
+    top: initial;
+    bottom: $card-width * 0.065;
+    left: $card-width * 0.05;
+    right: $card-width * 0.2;
+    width: auto;
+    transform: initial;
   }
   width: 100%;
   max-width: 95%;
@@ -136,18 +146,20 @@
   margin-left: $card-width * 0.15;
 }
 .mana {
-  right: 6px;
-  bottom: 6px;
-  background: purple;
+  position: absolute;
+  top: initial;
+  left: initial;
+  right: $card-width * 0.04;
+  bottom: $card-width * 0.04;
 }
 
 .description {
   position: absolute;
   z-index: 2;
-  left: 12px;
-  right: 12px;
+  left: $card-width * 0.07;
+  right: $card-width * 0.07;
   height: $card-width * 0.4;
-  bottom: $card-width * 0.04;
+  bottom: $card-width * 0.0;
   color: #d3eeff;
   font-size: $card-width * 0.05;
   display: flex;
@@ -159,6 +171,11 @@
 .description2 {
   margin-top: 2px;
   font-size: $card-width * 0.04;
+}
+.flavour {
+  font-style: italic;
+  font-size: $card-width * 0.04;
+  color: antiquewhite;
 }
 .underline {
   text-decoration: underline;
