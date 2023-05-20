@@ -152,7 +152,7 @@ export const allCards = {
         costToPlay: 1,
         description: 'On play',
         description2: 'Trash the top card of your mana stack',
-        artSrc: 'necromancer.jpeg',
+        artSrc: 'corrupted-monk.jpeg',
         power: 3,
         move: 1,
     }),
@@ -172,17 +172,19 @@ export const allCards = {
 
     henchMan: new Card({
         type: 'creature',
-        name: 'Henchman',
+        creatureType: 'skeleton',
+        name: 'Undead mage',
         costToBuy: 5,
         costToPlay: 2,
         description: 'On play',
         description2: 'You may place this under a creature to increase its power by 2',
-        artSrc: 'https://cdna.artstation.com/p/assets/images/images/009/328/478/large/nicolas-dechezelles-king-s-assassin-a.jpg?1518372283',
+        artSrc: 'undead-mage.jpeg',
         power: 2,
         move: 1,
     }),
     myrmidon: new Card({
         type: 'creature',
+        creatureType: 'skeleton',
         name: 'Myrmidon',
         costToBuy: 5,
         costToPlay: 1,
@@ -195,6 +197,7 @@ export const allCards = {
 
     manaDrake: new Card({
         type: 'creature',
+        creatureType: 'winged',
         name: 'Mana Drake',
         costToBuy: 6,
         costToPlay: 1,
@@ -206,15 +209,18 @@ export const allCards = {
     }),
     raider: new Card({
         type: 'creature',
+        creatureType: 'skeleton',
         name: 'Village Raider',
         costToBuy: 6,
         costToPlay: 1,
         artSrc: 'raider.jpeg',
         power: 3,
         move: 2,
+        attributes: [Attribute.RUSH],
     }),
     captain: new Card({
         type: 'creature',
+        creatureType: 'ghoul',
         name: 'Siege Captain',
         costToBuy: 6,
         costToPlay: 1,
@@ -226,7 +232,8 @@ export const allCards = {
     }),
     sergeant: new Card({
         type: 'creature',
-        name: 'Training camp Sergeant',
+        creatureType: 'beast',
+        name: 'Werewolf',
         costToBuy: 6,
         costToPlay: 2,
         description: 'While on field',
@@ -238,6 +245,7 @@ export const allCards = {
 
     warHornBearer: new Card({
         type: 'creature',
+        creatureType: 'beast',
         name: 'War Horn Bearer',
         costToBuy: 7,
         costToPlay: 3,
@@ -250,6 +258,7 @@ export const allCards = {
     }),
     shieldLord: new Card({
         type: 'creature',
+        creatureType: 'beast',
         name: 'Shield Lord',
         costToBuy: 7,
         costToPlay: 1,
@@ -263,6 +272,7 @@ export const allCards = {
 
     behemoth: new Card({
         type: 'creature',
+        creatureType: 'monstrosity',
         name: 'Behemoth',
         costToBuy: 8,
         costToPlay: 4,
@@ -271,17 +281,18 @@ export const allCards = {
         artSrc: 'behemoth2.jpeg',
         power: 5,
         move: 1,
-        attributes: [Attribute.TRAMPLE]
+        attributes: []
     }),
     rockGiant: new Card({
         type: 'creature',
+        creatureType: 'monstrosity',
         name: 'Rock Giant',
         costToBuy: 8,
         costToPlay: 2,
         artSrc: 'rock-giant.jpeg',
         power: 5,
         move: 1,
-        attributes: [Attribute.TRAMPLE]
+        attributes: []
     }),
 
 

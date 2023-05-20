@@ -18,3 +18,7 @@ html, body {
   src: url('/assets/VarelaRound-Regular.ttf?#iefix') format('embedded-opentype'), /* IE6-IE8 */
   url('/assets/VarelaRound-Regular.ttf')  format('truetype');
 }
+
+:root {
+  --card-width: 160px;
+}
