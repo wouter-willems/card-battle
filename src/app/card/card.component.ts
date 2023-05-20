@@ -16,12 +16,17 @@ export class CardComponent implements OnInit{
     @Output() onActivate = new EventEmitter<Card>();
 
     ngOnInit() {
+
+    }
+
+    getEffects() {
         if(this.cardData.attributes?.includes(Attribute.RUSH)) {
-            this.cardData.effects = [{
+            return [{
                 proc: Proc.WHILE_ON_FIELD,
                 effect: 'Move 2 spaces instead of 1'
             }, ...this.cardData.effects];
         }
+        return [];
     }
 
     hasAttack() {

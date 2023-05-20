@@ -56,7 +56,7 @@ export class Card {
         this.attack = data.attack;
         this.defense = data.defense;
         this.move = data.move;
-        this.artSrc = data.artSrc?.length > 0 ? data.artSrc : 'https://static.invenglobal.com/upload/image/2019/07/02/o1562078753250134.jpeg';
+        this.artSrc = data.artSrc?.length > 0 ? data.artSrc : 'placeholder.jpeg';
         this.attributes = data.attributes;
         this.isHidden = data.isHidden ?? false;
         this.activated = data.activated ?? true;

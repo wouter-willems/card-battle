@@ -11,7 +11,7 @@
     <div class="costToPlay" *ngIf="cardData.type !== 'mana'">{{cardData.costToPlay ?? 0}}</div>
     <div class="mana" *ngIf="cardData.type === 'mana'">{{cardData.mana}}</div>
     <div class="effects">
-        <div class="effect" *ngFor="let effect of cardData.effects">
+        <div class="effect" *ngFor="let effect of getEffects()">
             <div class="underline">{{getProcText(effect.proc)}}</div>
             <div class="description2">{{effect.effect}}</div>
         </div>

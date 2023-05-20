@@ -340,7 +340,7 @@ export const allCards = {
         costToBuy: 3,
         costToPlay: 1,
         description: 'Trash top 2 cards from your mana stack. Gain 1 mana crystal and discard it.',
-        artSrc: 'alchemy.jpeg',
+        artSrc: '',
     }),
     burnMana: new Card({
         type: 'spell',
@@ -373,7 +373,7 @@ export const allCards = {
         costToBuy: 4,
         costToPlay: 2,
         description: 'When this creature dies, immediately draw 1 card',
-        artSrc: 'https://c4.wallpaperflare.com/wallpaper/451/405/83/video-games-knights-league-of-legends-fantasy-art-armor-shield-artwork-swords-leona-1680x1050-wal-abstract-fantasy-hd-art-wallpaper-preview.jpg',
+        artSrc: '',
         attributes: [Attribute.ENCHANTMENT]
     }),
     blackHole: new Card({
