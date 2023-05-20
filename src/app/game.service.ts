@@ -19,7 +19,7 @@ export class GameService {
     }
 
     async init() {
-        const standards = Object.values(allCards).filter(e => e.type === 'follower' || e.type === 'spell');
+        const standards = Object.values(allCards).filter(e => e.type === 'creature' || e.type === 'spell');
         let i = 0;
         for (const e of standards.sort(() => Math.random() - 0.5)) {
             await new Promise((resolve, reject) => {

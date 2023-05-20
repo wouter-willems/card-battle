@@ -1,3 +1,8 @@
+import { Attribute } from "../cardsDB2";
+
+export type OmitFunctions<T> = Omit<T, { [K in keyof T]: T[K] extends Function ? K : never }[keyof T]>;
+
+
 function generateRandomString(length) {
     var result = '';
     var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -8,28 +13,32 @@ function generateRandomString(length) {
     return result;
 }
 
+type CardAttrs = OmitFunctions<Card>;
+
 export class Card {
     public id;
-    public type;
-    public name;
-    public costToBuy;
-    public costToPlay;
-    public mana;
-    public description;
-    public description2;
-    public power;
-    public attack;
-    public defense;
-    public move;
-    public artSrc;
-    public attributes;
-    public isHidden;
+    public type: 'mana' | 'creature' | 'spell' | 'trap';
+    public creatureType: 'skeleton' | 'winged' | 'beast' | 'humanoid' | 'ghoul' | 'monstrosity';
+    public name: string;
+    public costToBuy : number;
+    public costToPlay: number;
+    public mana: number;
+    public description: string;
+    public description2: string;
+    public power: number;
+    public attack: number;
+    public defense: number;
+    public move: number;
+    public artSrc: string;
+    public attributes: Array<Attribute>;
+    public isHidden: boolean;
     public activated: boolean;
-    public ts;
+    public ts: number;
 
-    constructor(data: any) {
+    constructor(data: Partial<CardAttrs>) {
         this.id = generateRandomString(30);
         this.type = data.type;
+        this.creatureType = data.creatureType;
         this.name = data.name;
         this.costToBuy = data.costToBuy;
         this.mana = data.mana;

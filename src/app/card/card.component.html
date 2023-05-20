@@ -20,6 +20,8 @@
     <div class="attack" *ngIf="hasAttack()">{{cardData.attack ?? cardData.power}}</div>
     <div class="defense" *ngIf="hasDefense()">{{cardData.defense ?? cardData.move}}</div>
 
+    <div class="creatureType">{{cardData.creatureType}}</div>
+
     <div class="selected" *ngIf="selected"></div>
 
     <div class="cardBack" *ngIf="hideCard">

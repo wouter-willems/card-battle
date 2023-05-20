@@ -3,7 +3,9 @@ import {Card} from "./models/card";
 export enum Attribute {
     SINGLE_USE = 'Single use',
     TRAMPLE = 'Trample',
-    ENCHANTMENT = 'Enchantment'
+    ENCHANTMENT = 'Enchantment',
+    STATIONARY = 'Stationary',
+    RUSH = 'Rush',
 }
 
 export const allCards = {
@@ -31,15 +33,18 @@ export const allCards = {
 
 
     caveBat: new Card({
-        type: 'follower',
+        type: 'creature',
+        creatureType: 'winged',
         name: 'Cave Bat',
         costToBuy: 2,
         artSrc: 'bat.jpeg',
         power: 1,
         move: 2,
+        attributes: [Attribute.RUSH],
     }),
     squire: new Card({
-        type: 'follower',
+        type: 'creature',
+        creatureType: 'ghoul',
         name: 'Squire recruit',
         costToBuy: 2,
         artSrc: 'squire.jpeg',
@@ -49,7 +54,8 @@ export const allCards = {
         description2: 'Power in battle is increased by 2',
     }),
     scholar: new Card({
-        type: 'follower',
+        type: 'creature',
+        creatureType: 'skeleton',
         name: 'Scholar',
         costToBuy: 2,
         description: 'On play',
@@ -59,7 +65,8 @@ export const allCards = {
         move: 1,
     }),
     rogue: new Card({
-        type: 'follower',
+        type: 'creature',
+        creatureType: 'humanoid',
         name: 'Rogue',
         costToBuy: 3,
         description: 'On attack',
@@ -69,7 +76,8 @@ export const allCards = {
         move: 1,
     }),
     goblin: new Card({
-        type: 'follower',
+        type: 'creature',
+        creatureType: 'humanoid',
         name: 'Greedy Goblin',
         costToBuy: 3,
         description: 'On battle',
@@ -78,9 +86,10 @@ export const allCards = {
         power: 1,
         move: 1,
     }),
-    foreman: new Card({
-        type: 'follower',
-        name: 'Foreman',
+    raven: new Card({
+        type: 'creature',
+        creatureType: 'winged',
+        name: 'Raven',
         costToBuy: 3,
         description: 'On play',
         description2: 'Trash 1 card in your hand, take a Mana Crystal and discard it',
@@ -90,7 +99,8 @@ export const allCards = {
     }),
 
     witch: new Card({
-        type: 'follower',
+        type: 'creature',
+        creatureType: 'humanoid',
         name: 'Witch',
         costToBuy: 4,
         costToPlay: 2,
@@ -101,7 +111,8 @@ export const allCards = {
         move: 1,
     }),
     scavenger: new Card({
-        type: 'follower',
+        type: 'creature',
+        creatureType: 'ghoul',
         name: 'Scavenger',
         costToBuy: 4,
         costToPlay: 1,
@@ -112,8 +123,9 @@ export const allCards = {
         move: 1,
     }),
     swordFighter: new Card({
-        type: 'follower',
-        name: 'Sword Fighter',
+        type: 'creature',
+        creatureType: 'skeleton',
+        name: 'Fallen swordsman',
         costToBuy: 4,
         costToPlay: 0,
         artSrc: 'sword-fighter.jpeg',
@@ -121,7 +133,8 @@ export const allCards = {
         move: 1,
     }),
     shieldBearer: new Card({
-        type: 'follower',
+        type: 'creature',
+        creatureType: 'skeleton',
         name: 'Shield Bearer',
         costToBuy: 4,
         costToPlay: 0,
@@ -131,9 +144,10 @@ export const allCards = {
         description: 'On defend',
         description2: 'Power in battle is increased by 2',
     }),
-    necromancer: new Card({
-        type: 'follower',
-        name: 'Necromancer',
+    corruptedWizard: new Card({
+        type: 'creature',
+        creatureType: 'humanoid',
+        name: 'Corrupted Monk',
         costToBuy: 4,
         costToPlay: 1,
         description: 'On play',
@@ -143,8 +157,9 @@ export const allCards = {
         move: 1,
     }),
     treasureChest: new Card({
-        type: 'follower',
-        name: 'Treasure chest',
+        type: 'creature',
+        creatureType: 'humanoid',
+        name: 'Enchanted Chest',
         costToBuy: 4,
         costToPlay: 3,
         description: 'While on field',
@@ -152,10 +167,11 @@ export const allCards = {
         artSrc: 'treasure-chest.jpeg',
         power: 0,
         move: 0,
+        attributes: [Attribute.STATIONARY],
     }),
 
     henchMan: new Card({
-        type: 'follower',
+        type: 'creature',
         name: 'Henchman',
         costToBuy: 5,
         costToPlay: 2,
@@ -166,7 +182,7 @@ export const allCards = {
         move: 1,
     }),
     myrmidon: new Card({
-        type: 'follower',
+        type: 'creature',
         name: 'Myrmidon',
         costToBuy: 5,
         costToPlay: 1,
@@ -178,7 +194,7 @@ export const allCards = {
     }),
 
     manaDrake: new Card({
-        type: 'follower',
+        type: 'creature',
         name: 'Mana Drake',
         costToBuy: 6,
         costToPlay: 1,
@@ -189,7 +205,7 @@ export const allCards = {
         move: 1,
     }),
     raider: new Card({
-        type: 'follower',
+        type: 'creature',
         name: 'Village Raider',
         costToBuy: 6,
         costToPlay: 1,
@@ -198,7 +214,7 @@ export const allCards = {
         move: 2,
     }),
     captain: new Card({
-        type: 'follower',
+        type: 'creature',
         name: 'Siege Captain',
         costToBuy: 6,
         costToPlay: 1,
@@ -209,7 +225,7 @@ export const allCards = {
         move: 1,
     }),
     sergeant: new Card({
-        type: 'follower',
+        type: 'creature',
         name: 'Training camp Sergeant',
         costToBuy: 6,
         costToPlay: 2,
@@ -221,7 +237,7 @@ export const allCards = {
     }),
 
     warHornBearer: new Card({
-        type: 'follower',
+        type: 'creature',
         name: 'War Horn Bearer',
         costToBuy: 7,
         costToPlay: 3,
@@ -233,7 +249,7 @@ export const allCards = {
         attributes: []
     }),
     shieldLord: new Card({
-        type: 'follower',
+        type: 'creature',
         name: 'Shield Lord',
         costToBuy: 7,
         costToPlay: 1,
@@ -246,7 +262,7 @@ export const allCards = {
     }),
 
     behemoth: new Card({
-        type: 'follower',
+        type: 'creature',
         name: 'Behemoth',
         costToBuy: 8,
         costToPlay: 4,
@@ -258,7 +274,7 @@ export const allCards = {
         attributes: [Attribute.TRAMPLE]
     }),
     rockGiant: new Card({
-        type: 'follower',
+        type: 'creature',
         name: 'Rock Giant',
         costToBuy: 8,
         costToPlay: 2,

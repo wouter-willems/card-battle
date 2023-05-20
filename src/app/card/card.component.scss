@@ -93,7 +93,7 @@
   z-index: 2;
   color: white;
   left: 50%;
-  top: $card-width * 0.84;
+  top: $card-width * 0.855;
   transform: translate(-50%, 0);
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -109,11 +109,19 @@
   text-align: center;
 }
 
+.creatureType {
+  position: absolute;
+  z-index: 2;
+  color: whitesmoke;
+  top: $card-width * 0.74;
+  left: $card-width * 0.63;
+}
+
 .costToBuy, .costToPlay, .mana {
   position: absolute;
   z-index: 2;
   top: $card-width * 0.034;
-  left: $card-width * 0.037;
+  left: $card-width * 0.045;
   width: $card-width * 0.15;
   height: $card-width * 0.15;
   border-radius: 100%;
@@ -139,7 +147,7 @@
   left: 12px;
   right: 12px;
   height: $card-width * 0.4;
-  bottom: $card-width * 0.07;
+  bottom: $card-width * 0.04;
   color: #d3eeff;
   font-size: $card-width * 0.05;
   display: flex;
@@ -161,7 +169,7 @@
   z-index: 2;
   left: 0;
   right: 0;
-  bottom: $card-width * 0.5;
+  bottom: $card-width * 0.48;
   height: $card-width * 0.12;
   width: 100%;
   text-align: center;

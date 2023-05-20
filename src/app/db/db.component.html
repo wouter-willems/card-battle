@@ -1,6 +1,9 @@
 
 <div class="componentContainer">
     <section>
+        {{amountPerType | json}}
+    </section>
+    <section>
         BASICS
         <div class="row">
             <app-card *ngFor="let card of basics" [cardData]="card"></app-card>
