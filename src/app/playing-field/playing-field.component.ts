@@ -1,12 +1,10 @@
 import {Component, ElementRef, QueryList, ViewChild, ViewChildren} from '@angular/core';
-import {CdkDragEnd, CdkDragMove, CdkDragStart} from "@angular/cdk/drag-drop";
 import {DiscardPileComponent} from "../discard-pile/discard-pile.component";
 import {DrawPileComponent} from "../draw-pile/draw-pile.component";
 import {Card} from "../models/card";
 import {allCards} from "../cardsDB2";
 import {CardHoldSpaceComponent} from "../card-hold-space/card-hold-space.component";
 import {HandComponent} from "../hand/hand.component";
-import {GameState} from "../gameState";
 import {WsServiceService} from "../ws-service.service";
 import {GameService} from "../game.service";
 

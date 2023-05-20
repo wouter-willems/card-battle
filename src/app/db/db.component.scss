@@ -1,0 +1,16 @@
+.componentContainer {
+
+  height: 100vh;
+  overflow: auto;
+}
+.row {
+  display: flex;
+  gap: 10px;
+  & > * {
+    flex: 0 0 auto;
+  }
+  flex-wrap: wrap;
+}
+section {
+  margin-bottom: 40px;
+}

@@ -1,0 +1,21 @@
+
+<div class="componentContainer">
+    <section>
+        BASICS
+        <div class="row">
+            <app-card *ngFor="let card of basics" [cardData]="card"></app-card>
+        </div>
+    </section>
+    <section>
+        CREATURES
+        <div class="row">
+            <app-card *ngFor="let card of creatures" [cardData]="card"></app-card>
+        </div>
+    </section>
+    <section>
+        SPELLS
+        <div class="row">
+            <app-card *ngFor="let card of spells" [cardData]="card"></app-card>
+        </div>
+    </section>
+</div>
