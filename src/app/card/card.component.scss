@@ -49,9 +49,17 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 60%;
   z-index: 0;
   background-size: cover;
+  &.isCreature {
+    height: 60%;
+  }
+  &.isSpell {
+    height: 70%;
+  }
+  &.isMana {
+    height: 88%;
+  }
 }
 
 .type {
@@ -153,6 +161,25 @@
   bottom: $card-width * 0.04;
 }
 
+.effects {
+  position: absolute;
+  z-index: 2;
+  top: $card-width * 0.98;
+  left: $card-width * 0.07;
+  right: $card-width * 0.07;
+  bottom: $card-width * 0.05;
+  color: #d3eeff;
+  font-size: $card-width * 0.05;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  .effect {
+    margin-bottom: $card-width * 0.02;
+  }
+}
+
 .description {
   position: absolute;
   z-index: 2;
@@ -168,6 +195,10 @@
   text-align: center;
   flex-direction: column;
 }
+.underline {
+  text-decoration: underline;
+  font-size: $card-width * 0.048;
+}
 .description2 {
   margin-top: 2px;
   font-size: $card-width * 0.04;
@@ -176,9 +207,6 @@
   font-style: italic;
   font-size: $card-width * 0.04;
   color: antiquewhite;
-}
-.underline {
-  text-decoration: underline;
 }
 
 .attack, .defense {

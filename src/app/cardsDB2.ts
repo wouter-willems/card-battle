@@ -8,6 +8,14 @@ export enum Attribute {
     RUSH = 'Rush',
 }
 
+export enum Proc {
+    ON_PLAY,
+    ON_BATTLE,
+    ON_ATTACK,
+    ON_DEFEND,
+    WHILE_ON_FIELD
+}
+
 export const allCards = {
     manaPebble: new Card({
         type: 'mana',
@@ -37,7 +45,7 @@ export const allCards = {
         creatureType: 'winged',
         name: 'Cave Bat',
         costToBuy: 2,
-        artSrc: 'bat.jpeg',
+        artSrc: 'bat2-c.jpeg',
         power: 1,
         move: 2,
         attributes: [Attribute.RUSH],
@@ -50,8 +58,13 @@ export const allCards = {
         artSrc: 'squire.jpeg',
         power: 0,
         move: 1,
-        description: 'On defend',
-        description2: 'Power in battle is increased by 2',
+        effects: [{
+            proc: Proc.ON_DEFEND,
+            effect: 'Power in battle is increased by 2',
+        }],
+        attributes: [Attribute.RUSH],
+        // description: 'On defend',
+        // description2: 'Power in battle is increased by 2',
     }),
     scholar: new Card({
         type: 'creature',
@@ -89,11 +102,11 @@ export const allCards = {
     raven: new Card({
         type: 'creature',
         creatureType: 'winged',
-        name: 'Raven',
+        name: 'Black Raven',
         costToBuy: 3,
         description: 'On play',
         description2: 'Trash 1 card in your hand, take a Mana Crystal and discard it',
-        artSrc: '',
+        artSrc: 'raven1-c.jpeg',
         power: 1,
         move: 1,
     }),
@@ -126,7 +139,7 @@ export const allCards = {
         type: 'creature',
         creatureType: 'skeleton',
         name: 'Fallen swordsman',
-        flavour: `Originally known as 'Leo the Bold', fallen in times of the Great War. Not by battle, but because he didn't do the dishes.`,
+        flavour: `Originally known as 'Leo the Bold', fallen in times of the Great War. Not in battle, but because he didn't do the dishes.`,
         costToBuy: 4,
         costToPlay: 0,
         artSrc: 'sword-fighter.jpeg',
@@ -204,7 +217,7 @@ export const allCards = {
         costToPlay: 1,
         description: 'On battle',
         description2: 'Gain 1 mana crystal and discard it',
-        artSrc: 'mana-drake-c.jpeg',
+        artSrc: 'mana-drake2-c.jpeg',
         power: 3,
         move: 1,
     }),
@@ -239,7 +252,7 @@ export const allCards = {
         costToPlay: 3,
         description: 'On battle',
         description2: 'Look through your discard pile and summon a skeleton creature immediately without paying its cost',
-        artSrc: '',
+        artSrc: 'apprentice-c.jpeg',
         power: 2,
         move: 1,
     }),
@@ -252,18 +265,18 @@ export const allCards = {
         costToPlay: 3,
         description: 'On play',
         description2: 'Draw any creature from your discard pile',
-        artSrc: '',
+        artSrc: 'war-horn-c.jpeg',
         power: 4,
         move: 1,
         attributes: []
     }),
     shieldLord: new Card({
         type: 'creature',
-        creatureType: 'beast',
+        creatureType: 'skeleton',
         name: 'Shield Lord',
         costToBuy: 7,
         costToPlay: 1,
-        artSrc: '',
+        artSrc: 'shield-lord-c.jpeg',
         power: 3,
         move: 1,
         description: 'On defend',

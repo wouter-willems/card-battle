@@ -1,4 +1,4 @@
-import { Attribute } from "../cardsDB2";
+import {Attribute, Proc} from "../cardsDB2";
 
 export type OmitFunctions<T> = Omit<T, { [K in keyof T]: T[K] extends Function ? K : never }[keyof T]>;
 
@@ -23,6 +23,10 @@ export class Card {
     public costToBuy : number;
     public costToPlay: number;
     public mana: number;
+    public effects: Array<{
+        proc: Proc,
+        effect: string,
+    }>;
     public description: string;
     public description2: string;
     public flavour: string;
@@ -43,6 +47,7 @@ export class Card {
         this.name = data.name;
         this.costToBuy = data.costToBuy;
         this.mana = data.mana;
+        this.effects = data.effects ?? [];
         this.costToPlay = data.costToPlay;
         this.description = data.description;
         this.description2 = data.description2;

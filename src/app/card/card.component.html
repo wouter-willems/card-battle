@@ -10,6 +10,12 @@
     <div class="costToBuy">{{cardData.costToBuy}}</div>
     <div class="costToPlay" *ngIf="cardData.type !== 'mana'">{{cardData.costToPlay ?? 0}}</div>
     <div class="mana" *ngIf="cardData.type === 'mana'">{{cardData.mana}}</div>
+    <div class="effects">
+        <div class="effect" *ngFor="let effect of cardData.effects">
+            <div class="underline">{{getProcText(effect.proc)}}</div>
+            <div class="description2">{{effect.effect}}</div>
+        </div>
+    </div>
     <div class="description">
         <div [ngClass]="{underline: cardData.description2}">{{cardData.description}}</div>
         <div *ngIf="cardData.description2" class="description2">
@@ -19,8 +25,8 @@
             {{cardData.flavour}}
         </div>
     </div>
-    <img class="art" [ngStyle]="{'background-image': 'url(\'/assets/art/' + cardData.artSrc + '\')'}"  />
-    <div class="textOverlay"></div>
+    <img class="art" [ngStyle]="{'background-image': 'url(\'/assets/art/' + cardData.artSrc + '\')'}" [ngClass]="{'isMana': cardData.type === 'mana', 'isCreature': cardData.type === 'creature', 'isSpell': cardData.type === 'spell'}" />
+    <div class="textOverlay" *ngIf="cardData.type === 'creature'"></div>
 
     <div class="attack" *ngIf="hasAttack()">{{cardData.attack ?? cardData.power}}</div>
     <div class="defense" *ngIf="hasDefense()">{{cardData.defense ?? cardData.move}}</div>
