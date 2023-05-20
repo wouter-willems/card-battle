@@ -184,7 +184,7 @@ export const allCards = {
         costToPlay: 1,
         description: 'On battle',
         description2: 'Gain 1 mana crystal and discard it',
-        artSrc: 'mana-drake.jpeg',
+        artSrc: 'mana-drake-c.jpeg',
         power: 3,
         move: 1,
     }),

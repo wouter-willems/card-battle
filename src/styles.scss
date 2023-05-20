@@ -6,9 +6,15 @@ html {
 html, body {
   height: 100%;
   margin: 0;
-  font-family: Helvetica;
+  font-family: VarelaRound;
   font-size: 2vh;
 }
 * {
   box-sizing: border-box;
+}
+@font-face {
+  font-family: 'VarelaRound';
+  src: url('/assets/VarelaRound-Regular.ttf'); /* IE9 Compat Modes */
+  src: url('/assets/VarelaRound-Regular.ttf?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('/assets/VarelaRound-Regular.ttf')  format('truetype');
 }
