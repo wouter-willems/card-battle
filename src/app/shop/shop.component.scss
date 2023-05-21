@@ -4,5 +4,5 @@
 }
 button {
   width: $card-width;
-  height: $card-width * 0.2;
+  height: calc($card-width * 0.2);
 }

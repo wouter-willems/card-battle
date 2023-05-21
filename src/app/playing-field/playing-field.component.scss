@@ -36,7 +36,7 @@ app-card {
 .playerField {
   position: fixed;
   bottom: 10px;
-  left: $card-width * 2.5;
+  left: 340px;
   gap: 20px;
   background: green;
   display: flex;
@@ -82,7 +82,7 @@ app-draw-pile {
 .battleAndStation {
   position: fixed;
   top: 10px;
-  right: $card-width * 1.5;
+  right: calc($card-width * 1.5);
 
   .battle {
     display: flex;
@@ -105,14 +105,14 @@ app-draw-pile {
 
 app-hand {
   position: relative;
-  width: $card-width * 2;
+  width: calc($card-width * 2);
 }
 .handCard {
   position: absolute;
   left: 0;
   bottom: 0;
   &:hover {
-    z-index: 1000 !important;
+    //z-index: 1000 !important;
   }
 }
 
@@ -129,4 +129,12 @@ app-hand {
   right: 10px;
   display: flex;
   flex-direction: column;
+}
+
+.bigView {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
 }

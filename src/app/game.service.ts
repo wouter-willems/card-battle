@@ -13,6 +13,7 @@ export class GameService {
     private cardsWithDestination = {};
     private moveListeners = [];
     public player: number;
+    private bigViewCard: Card;
 
     constructor(private ws: WsServiceService) {
 
@@ -130,4 +131,11 @@ export class GameService {
     }
 
 
+    getBigViewCard(): Card {
+        return this.bigViewCard;
+    }
+
+    setBigViewCard(c: Card) {
+        this.bigViewCard = c;
+    }
 }

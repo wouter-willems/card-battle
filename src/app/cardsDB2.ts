@@ -62,7 +62,7 @@ export const allCards = {
             proc: Proc.ON_DEFEND,
             effect: 'Power in battle is increased by 2',
         }],
-        attributes: [Attribute.RUSH],
+        attributes: [],
         // description: 'On defend',
         // description2: 'Power in battle is increased by 2',
     }),

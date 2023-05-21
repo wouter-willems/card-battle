@@ -1,4 +1,4 @@
-<div class="componentContainer" (click)="onSelect.emit(cardData)">
+<div class="componentContainer" (click)="onSelect.emit(cardData)" (mouseenter)="setHover()" (mouseleave)="undoHover()" [ngClass]="{'bigMode': bigMode}">
     <div class="cardFront">
         <img *ngIf="cardData.type === 'creature'" src="/assets/card-front.png" />
         <img *ngIf="cardData.type === 'spell'" src="/assets/card-front-spell.png" />

@@ -20,5 +20,5 @@ html, body {
 }
 
 :root {
-  --card-width: 160px;
+  --card-width: calc(70vh / 5);
 }

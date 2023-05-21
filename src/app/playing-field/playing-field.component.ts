@@ -35,6 +35,7 @@ export class PlayingFieldComponent {
     @ViewChild('manaStack', {read: CardHoldSpaceComponent}) manaStack: CardHoldSpaceComponent;
     @ViewChild('drawPile', {read: DrawPileComponent}) drawPile: DrawPileComponent;
     @ViewChild('trash', {read: ElementRef}) trashRef: ElementRef;
+    @ViewChild('bigViewRef', {read: ElementRef}) bigViewRef: ElementRef;
     @ViewChild(HandComponent, {read: HandComponent}) handRef: HandComponent;
 
     @ViewChild('battle1', {read: CardHoldSpaceComponent}) battle1: CardHoldSpaceComponent;
@@ -71,6 +72,13 @@ export class PlayingFieldComponent {
                 this.discardCard();
             }
         });
+
+        document.addEventListener('mousemove', e => {
+            if (this.bigViewRef?.nativeElement) {
+                this.bigViewRef.nativeElement.style.top = `${Math.max(0, Math.min(e.clientY - 120, document.body.clientHeight - 320))}px`;
+                this.bigViewRef.nativeElement.style.left = `${e.clientX + 10}px`;
+            }
+        })
     }
 
     ngOnInit () {
@@ -236,5 +244,9 @@ export class PlayingFieldComponent {
 
     getManaDest() {
         return 'mana' + this.player;
+    }
+
+    getBigViewCard() {
+        return this.gameServ.getBigViewCard();
     }
 }

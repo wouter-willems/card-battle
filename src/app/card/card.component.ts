@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Card} from "../models/card";
 import {Attribute, Proc} from "../cardsDB2";
+import {GameService} from "../game.service";
 
 @Component({
     selector: 'app-card',
@@ -14,6 +15,10 @@ export class CardComponent implements OnInit{
     @Output() onSelect = new EventEmitter<Card>();
     @Output() onShow = new EventEmitter<Card>();
     @Output() onActivate = new EventEmitter<Card>();
+    @Input() bigMode = false;
+
+    constructor(private gameService: GameService) {
+    }
 
     ngOnInit() {
 
@@ -60,5 +65,12 @@ export class CardComponent implements OnInit{
                 return 'While on Field';
         }
         return 'No proc';
+    }
+
+    setHover() {
+        this.gameService.setBigViewCard(this.cardData);
+    }
+    undoHover() {
+        this.gameService.setBigViewCard(null);
     }
 }

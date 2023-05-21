@@ -193,3 +193,7 @@
             (onActivate)="activateCard(card)"
     ></app-card>
 </ng-template>
+
+<div class="bigView" *ngIf="getBigViewCard()" #bigViewRef>
+    <app-card [cardData]="getBigViewCard()" [bigMode]="true"></app-card>
+</div>

@@ -3,16 +3,16 @@
 :host {
   display: block;
   box-shadow: rgb(243, 243, 243) 3px 5px 20px;
-  width: $card-width;
-  height: $card-height;
-  font-size: $card-width * 0.05;
-
 }
 
 .componentContainer {
+  &.bigMode {
+    --card-width: 240px;
+  }
   position: relative;
-  height: 100%;
-  width: 100%;
+  width: $card-width;
+  height: $card-height;
+  font-size: calc($card-width * 0.05);
   border-radius: 10px;
   overflow: hidden;
   > * {
@@ -38,7 +38,7 @@
   left: 0;
   right: 0;
   z-index: 1;
-  height: $card-width * 0.6;
+  height: calc($card-width * 0.6);
   background-image: linear-gradient(to bottom, rgba(255, 0, 0, 0), rgba(3, 3, 25, 1) 10%, rgba(3, 3, 25, 1));
 }
 
@@ -82,15 +82,15 @@
   position: absolute;
   z-index: 2;
   color: white;
-  height: $card-width * 0.12;
-  width: $card-width * 0.5;
+  height: calc($card-width * 0.12);
+  width: calc($card-width * 0.5);
   left: 50%;
   bottom: 0;
   transform: translate(-50%, 0);
   white-space: nowrap;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  font-size: $card-width * 0.06;
+  font-size: calc($card-width * 0.06);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,7 +101,7 @@
   z-index: 2;
   color: white;
   left: 50%;
-  top: $card-width * 0.86;
+  top: calc($card-width * 0.86);
   transform: translate(-50%, 0);
   text-transform: uppercase;
   letter-spacing: 1.5px;
@@ -116,9 +116,9 @@
     border-radius: 9999px;
     padding: 2px 8px;
     top: initial;
-    bottom: $card-width * 0.065;
-    left: $card-width * 0.05;
-    right: $card-width * 0.2;
+    bottom: calc($card-width * 0.065);
+    left: calc($card-width * 0.05);
+    right: calc($card-width * 0.2);
     width: auto;
     transform: initial;
   }
@@ -131,64 +131,64 @@
   position: absolute;
   z-index: 2;
   color: whitesmoke;
-  top: $card-width * 0.74;
-  left: $card-width * 0.63;
+  top: calc($card-width * 0.74);
+  left: calc($card-width * 0.63);
 }
 
 .costToBuy, .costToPlay, .mana {
   position: absolute;
   z-index: 2;
-  top: $card-width * 0.034;
-  left: $card-width * 0.045;
-  width: $card-width * 0.15;
-  height: $card-width * 0.15;
+  top: calc($card-width * 0.034);
+  left: calc($card-width * 0.045);
+  width: calc($card-width * 0.15);
+  height: calc($card-width * 0.15);
   border-radius: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: whitesmoke;
-  font-size: $card-width * 0.1;
+  font-size: calc($card-width * 0.1);
 }
 
 .costToPlay {
-  margin-left: $card-width * 0.15;
+  margin-left: calc($card-width * 0.15);
 }
 .mana {
   position: absolute;
   top: initial;
   left: initial;
-  right: $card-width * 0.04;
-  bottom: $card-width * 0.04;
+  right: calc($card-width * 0.04);
+  bottom: calc($card-width * 0.04);
 }
 
 .effects {
   position: absolute;
   z-index: 2;
-  top: $card-width * 0.98;
-  left: $card-width * 0.07;
-  right: $card-width * 0.07;
-  bottom: $card-width * 0.05;
+  top: calc($card-width * 0.98);
+  left: calc($card-width * 0.07);
+  right: calc($card-width * 0.07);
+  bottom: calc($card-width * 0.05);
   color: #d3eeff;
-  font-size: $card-width * 0.05;
+  font-size: calc($card-width * 0.05);
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   flex-direction: column;
   .effect {
-    margin-bottom: $card-width * 0.02;
+    margin-bottom: calc($card-width * 0.02);
   }
 }
 
 .description {
   position: absolute;
   z-index: 2;
-  left: $card-width * 0.07;
-  right: $card-width * 0.07;
-  height: $card-width * 0.4;
-  bottom: $card-width * 0.0;
+  left: calc($card-width * 0.07);
+  right: calc($card-width * 0.07);
+  height: calc($card-width * 0.4);
+  bottom: calc($card-width * 0.0);
   color: #d3eeff;
-  font-size: $card-width * 0.05;
+  font-size: calc($card-width * 0.05);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -197,15 +197,15 @@
 }
 .underline {
   text-decoration: underline;
-  font-size: $card-width * 0.048;
+  font-size: calc($card-width * 0.048);
 }
 .description2 {
   margin-top: 2px;
-  font-size: $card-width * 0.04;
+  font-size: calc($card-width * 0.04);
 }
 .flavour {
   font-style: italic;
-  font-size: $card-width * 0.04;
+  font-size: calc($card-width * 0.04);
   color: antiquewhite;
 }
 
@@ -214,15 +214,15 @@
   z-index: 2;
   left: 0;
   right: 0;
-  bottom: $card-width * 0.48;
-  height: $card-width * 0.12;
+  bottom: calc($card-width * 0.48);
+  height: calc($card-width * 0.12);
   width: 100%;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   color: whitesmoke;
-  font-size: $card-width * 0.1;
+  font-size: calc($card-width * 0.1);
   text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
   border-radius: 3px;
 }
