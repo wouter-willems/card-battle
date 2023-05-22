@@ -29,9 +29,9 @@ export class CardComponent implements OnInit{
             return [{
                 proc: Proc.WHILE_ON_FIELD,
                 effect: 'Move 2 spaces instead of 1'
-            }, ...this.cardData.effects];
+            }, ...(this.cardData.effects ?? [])];
         }
-        return [];
+        return this.cardData.effects ?? [];
     }
 
     hasAttack() {
