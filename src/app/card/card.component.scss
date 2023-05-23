@@ -164,7 +164,7 @@
 .effects {
   position: absolute;
   z-index: 2;
-  top: calc($card-width * 0.98);
+  height: calc($card-width * 0.28);
   left: calc($card-width * 0.07);
   right: calc($card-width * 0.07);
   bottom: calc($card-width * 0.05);

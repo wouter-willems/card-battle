@@ -25,13 +25,20 @@ export class CardComponent implements OnInit{
     }
 
     getEffects() {
+        const otherEffects = [];
         if(this.cardData.attributes?.includes(Attribute.RUSH)) {
-            return [{
+            otherEffects.push({
                 proc: Proc.WHILE_ON_FIELD,
                 effect: 'Move 2 spaces instead of 1'
-            }, ...(this.cardData.effects ?? [])];
+            });
         }
-        return this.cardData.effects ?? [];
+        if(this.cardData.attributes?.includes(Attribute.STATIONARY)) {
+            otherEffects.push({
+                proc: Proc.WHILE_ON_FIELD,
+                effect: 'Can not move or be moved'
+            });
+        }
+        return [...this.cardData.effects ?? [], ...otherEffects];
     }
 
     hasAttack() {
