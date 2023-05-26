@@ -10,10 +10,11 @@ export enum Attribute {
 
 export enum Proc {
 	ON_PLAY,
-	ON_BATTLE,
-	ON_ATTACK,
-	ON_DEFEND,
-	WHILE_ON_FIELD
+	ON_ENEMY_ENCOUNTER,
+	ON_ENEMY_LAND,
+	ON_OWN_LAND,
+	WHILE_IN_PLAY,
+	ON_DEATH,
 }
 
 export const allCards = {
@@ -39,6 +40,47 @@ export const allCards = {
 		artSrc: 'mana-crystal.jpeg'
 	}),
 
+	telekinesis: new Card({
+		type: 'spell',
+		name: 'Telekinesis',
+		costToBuy: 0,
+		costToPlay: 2,
+		description: 'When initiating: move an ally creature 1 tile back. When reacting: move an ally creature 1 tile to the side',
+		artSrc: 'telekinesis.jpeg',
+		buyable: false,
+	}),
+
+	rabidDog: new Card({
+		type: 'creature',
+		creatureType: 'beast',
+		name: 'Rabid Dog',
+		costToBuy: 0,
+		artSrc: 'rabidDog.jpeg',
+		power: 1,
+		attributes: [],
+		buyable: false,
+	}),
+	oneLeggedZombie: new Card({
+		type: 'creature',
+		creatureType: 'ghoul',
+		name: 'One Legged Zombie',
+		costToBuy: 0,
+		artSrc: 'oneLeggedZombie.jpeg',
+		effects: [
+			{
+				proc: Proc.ON_OWN_LAND,
+				effect: 'Power is increased by 1'
+			},
+			{
+				proc: Proc.ON_DEATH,
+				effect: 'Draw a card'
+			}
+		],
+		power: 0,
+		attributes: [],
+		buyable: false,
+	}),
+
 
 	caveBat: new Card({
 		type: 'creature',
@@ -59,7 +101,7 @@ export const allCards = {
 		power: 0,
 		move: 1,
 		effects: [{
-			proc: Proc.ON_DEFEND,
+			proc: Proc.ON_OWN_LAND,
 			effect: 'Power in battle is increased by 2',
 		}],
 		attributes: [],
@@ -105,7 +147,7 @@ export const allCards = {
 		name: 'Black Raven',
 		costToBuy: 3,
 		description: 'On play',
-		description2: 'Trash 1 card in your hand, take a Mana Crystal and discard it',
+		description2: 'Trash top card of your mana stack, take a Mana Rock and discard it',
 		artSrc: 'raven1-c.jpeg',
 		power: 1,
 		move: 1,
@@ -171,7 +213,7 @@ export const allCards = {
 		costToPlay: 0,
 		effects: [
 			{
-				proc: Proc.ON_BATTLE,
+				proc: Proc.ON_ENEMY_ENCOUNTER,
 				effect: 'If there is at least 1 other beast adjacent to this one, enemy or ally, increase power by 1.'
 			}
 		],
@@ -211,7 +253,7 @@ export const allCards = {
 		costToPlay: 3,
 		effects: [
 			{
-				proc: Proc.WHILE_ON_FIELD,
+				proc: Proc.WHILE_IN_PLAY,
 				effect: 'Draw 1 extra card during draw phase'
 			}
 		],
@@ -228,7 +270,7 @@ export const allCards = {
 		costToPlay: 2,
 		effects: [
 			{
-				proc: Proc.ON_BATTLE,
+				proc: Proc.ON_ENEMY_ENCOUNTER,
 				effect: 'Both this creature and the attacker die',
 			}
 		],
@@ -319,7 +361,7 @@ export const allCards = {
 		costToPlay: 3,
 		effects: [
 			{
-				proc: Proc.ON_BATTLE,
+				proc: Proc.ON_ENEMY_ENCOUNTER,
 				effect: 'For each ally beast on the same row, increase power by 1',
 			},
 			{
@@ -433,8 +475,8 @@ export const allCards = {
 		type: 'spell',
 		name: 'Dying wish',
 		costToBuy: 4,
-		costToPlay: 2,
-		description: 'When this creature dies, immediately draw 1 card',
+		costToPlay: 1,
+		description: 'When this creature dies, immediately draw 2 cards',
 		artSrc: '',
 		attributes: [Attribute.ENCHANTMENT]
 	}),

@@ -28,13 +28,13 @@ export class CardComponent implements OnInit{
         const otherEffects = [];
         if(this.cardData.attributes?.includes(Attribute.RUSH)) {
             otherEffects.push({
-                proc: Proc.WHILE_ON_FIELD,
+                proc: Proc.WHILE_IN_PLAY,
                 effect: 'Move 2 spaces instead of 1'
             });
         }
         if(this.cardData.attributes?.includes(Attribute.STATIONARY)) {
             otherEffects.push({
-                proc: Proc.WHILE_ON_FIELD,
+                proc: Proc.WHILE_IN_PLAY,
                 effect: 'Can not move or be moved'
             });
         }
@@ -62,14 +62,16 @@ export class CardComponent implements OnInit{
         switch (prod) {
             case Proc.ON_PLAY:
                 return 'On Play';
-            case Proc.ON_BATTLE:
-                return 'On Battle';
-            case Proc.ON_ATTACK:
-                return 'On Attack';
-            case Proc.ON_DEFEND:
-                return 'On Defend';
-            case Proc.WHILE_ON_FIELD:
-                return 'While on Field';
+            case Proc.ON_ENEMY_ENCOUNTER:
+                return 'On Enemy Encounter';
+            case Proc.ON_ENEMY_LAND:
+                return 'On Enemy Land';
+            case Proc.ON_OWN_LAND:
+                return 'On Own Land';
+            case Proc.WHILE_IN_PLAY:
+                return 'While in Play';
+            case Proc.ON_DEATH:
+                return 'On Death';
         }
         return 'No proc';
     }

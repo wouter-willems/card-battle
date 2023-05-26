@@ -96,27 +96,30 @@ export class PlayingFieldComponent {
             this.firstShopBatch = [
                 c[0],
                 c[1],
-                c[2],
             ].filter(Boolean);
 
             this.secondShopBatch = [
+                c[2],
                 c[3],
-                c[4],
-                c[5],
             ].filter(Boolean)
 
             this.thirdShopBatch = [
-                c[6],
-                c[7],
-                c[8],
+                c[4],
+                c[5],
             ].filter(Boolean)
         })
 
         if (this.player === 1) {
-            this.gameServ.init();
-            // this.gameServ.moveCard(Card.copy(allCards.manaPebble), 'discard'+this.player);
-            // this.gameServ.moveCard(Card.copy(allCards.manaCrystal), 'discard'+this.player);
-            // this.gameServ.moveCard(Card.copy(allCards.manaBigCrystal), 'discard'+this.player);
+            await this.gameServ.init();
+            for (let i = 1; i<=2; i++) {
+                for (let j = 0; j<6; j++) {
+                    this.gameServ.moveCard(Card.copy(allCards.manaPebble), 'discard'+i);
+                }
+                this.gameServ.moveCard(Card.copy(allCards.manaCrystal), 'discard'+i);
+                this.gameServ.moveCard(Card.copy(allCards.telekinesis), 'discard'+i);
+                this.gameServ.moveCard(Card.copy(allCards.rabidDog), 'discard'+i);
+                this.gameServ.moveCard(Card.copy(allCards.oneLeggedZombie), 'discard'+i);
+            }
             this.gameServ.shuffleShop();
         }
 

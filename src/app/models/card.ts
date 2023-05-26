@@ -38,6 +38,7 @@ export class Card {
     public attributes: Array<Attribute>;
     public isHidden: boolean;
     public activated: boolean;
+    public buyable: boolean;
     public ts: number;
 
     constructor(data: Partial<CardAttrs>) {
@@ -60,6 +61,7 @@ export class Card {
         this.attributes = data.attributes;
         this.isHidden = data.isHidden ?? false;
         this.activated = data.activated ?? true;
+        this.buyable = data.buyable ?? true;
         this.ts = new Date().getTime();
     }
 
