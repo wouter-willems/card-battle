@@ -117,8 +117,11 @@ export class PlayingFieldComponent {
                 }
                 this.gameServ.moveCard(Card.copy(allCards.manaCrystal), 'discard'+i);
                 this.gameServ.moveCard(Card.copy(allCards.telekinesis), 'discard'+i);
-                this.gameServ.moveCard(Card.copy(allCards.rabidDog), 'discard'+i);
                 this.gameServ.moveCard(Card.copy(allCards.oneLeggedZombie), 'discard'+i);
+                this.gameServ.moveCard(Card.copy(allCards.plagueRats), 'discard'+i);
+                this.gameServ.moveCard(Card.copy(allCards.failedSummon), 'discard'+i);
+                this.gameServ.moveCard(Card.copy(allCards.livingBook), 'discard'+i);
+                this.gameServ.moveCard(Card.copy(allCards.escapedSoul), 'discard'+i);
             }
             this.gameServ.shuffleShop();
         }

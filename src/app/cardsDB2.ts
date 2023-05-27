@@ -50,16 +50,6 @@ export const allCards = {
 		buyable: false,
 	}),
 
-	rabidDog: new Card({
-		type: 'creature',
-		creatureType: 'beast',
-		name: 'Rabid Dog',
-		costToBuy: 0,
-		artSrc: 'rabidDog.jpeg',
-		power: 1,
-		attributes: [],
-		buyable: false,
-	}),
 	oneLeggedZombie: new Card({
 		type: 'creature',
 		creatureType: 'ghoul',
@@ -77,6 +67,77 @@ export const allCards = {
 			}
 		],
 		power: 0,
+		attributes: [],
+		buyable: false,
+	}),
+	plagueRats: new Card({
+		type: 'creature',
+		creatureType: 'beast',
+		name: 'Plague Rats',
+		costToBuy: 0,
+		artSrc: 'plagueRats.png',
+		effects: [
+			{
+				proc: Proc.ON_ENEMY_LAND,
+				effect: 'Move 2 tiles instead of 1'
+			},
+			{
+				proc: Proc.ON_OWN_LAND,
+				effect: 'Power increased by 1'
+			},
+		],
+		power: 1,
+		attributes: [],
+		buyable: false,
+	}),
+	failedSummon: new Card({
+		type: 'creature',
+		creatureType: 'ghoul',
+		name: 'Failed Summon',
+		costToBuy: 0,
+		costToPlay: 1,
+		artSrc: 'failedSummon.png',
+		effects: [
+			{
+				proc: Proc.ON_DEATH,
+				effect: 'you may discard 1 card from your hand, if you do, put failed summon in your hand.'
+			},
+		],
+		power: 1,
+		attributes: [],
+		buyable: false,
+	}),
+	livingBook: new Card({
+		type: 'creature',
+		creatureType: 'humanoid',
+		name: 'Living Book',
+		costToBuy: 0,
+		costToPlay: 2,
+		artSrc: 'livingBook.png',
+		effects: [
+			{
+				proc: Proc.WHILE_IN_PLAY,
+				effect: 'If the opponent targets another allied creature, you may reveal at least 2 cards from your hand, if you do, Living Book becomes the new target of the spell.'
+			},
+		],
+		power: 1,
+		attributes: [],
+		buyable: false,
+	}),
+	escapedSoul: new Card({
+		type: 'creature',
+		creatureType: 'humanoid',
+		name: 'Escaped Soul',
+		costToBuy: 0,
+		costToPlay: 1,
+		artSrc: 'escapedSoul.png',
+		effects: [
+			{
+				proc: Proc.ON_DEATH,
+				effect: 'You may look for a mana pebble in your deck and put it on your mana stack.'
+			},
+		],
+		power: 1,
 		attributes: [],
 		buyable: false,
 	}),
